@@ -58,115 +58,116 @@ insert into users (id, username, password, name) values (49, 'kmeadmore1c', 'dE0
 insert into users (id, username, password, name) values (50, 'jdwyer1d', 'yE1#zMN3lm*H', 'Jenine Dwyer');
 
 
-create table books (
-	id INT,
-	title VARCHAR(49),
-	author VARCHAR(50),
-	genre VARCHAR(18),
-	releaseDate DATE,
-	description VARCHAR(77)
+CREATE TABLE "books" (
+    "title"	VARCHAR(512),
+    "author"	VARCHAR(512),
+    "language"	VARCHAR(512),
+    "releaseYear"	INT,
+    "sales"	INT,
+    "genre"	VARCHAR(512)
 );
-insert into books (id, title, author, genre, releaseDate, description) values (1, 'The Devil in the White City', 'Jacklin Redihough', 'Art', '22/05/1982', 'A heartwarming story about friendship and love');
-insert into books (id, title, author, genre, releaseDate, description) values (2, 'The Maze Runner', 'Nate Kinzel', 'Young Adult', '27/01/2010', 'A poignant coming-of-age story set during World War II');
-insert into books (id, title, author, genre, releaseDate, description) values (3, 'The Book Thief', 'Andrew McCathie', 'Humor', '24/11/2003', 'A cookbook filled with delicious recipes from around the world');
-insert into books (id, title, author, genre, releaseDate, description) values (4, 'To Kill a Mockingbird', 'Kissie Bernardez', 'Young Adult', '24/11/1985', 'A collection of short stories by a diverse group of authors');
-insert into books (id, title, author, genre, releaseDate, description) values (5, 'The Secret Garden', 'Daffy Screen', 'Chick Lit', '09/07/1998', 'A graphic novel with stunning artwork and a compelling story');
-insert into books (id, title, author, genre, releaseDate, description) values (6, 'The Great Gatsby', 'Ximenes Pringley', 'Graphic Novel', '18/03/1966', 'A cookbook filled with delicious recipes from around the world');
-insert into books (id, title, author, genre, releaseDate, description) values (7, 'The Picture of Dorian Gray', 'Cathee Hartly', 'Thriller', '13/07/1994', 'A sci-fi adventure exploring the mysteries of the universe');
-insert into books (id, title, author, genre, releaseDate, description) values (8, 'The Outsiders', 'April Smithen', 'Horror', '06/04/2020', 'A thrilling mystery novel set in a small town');
-insert into books (id, title, author, genre, releaseDate, description) values (9, 'The Girl with the Dragon Tattoo', 'Billie Lindstedt', 'Graphic Novel', '19/10/1977', 'A self-help book offering practical advice for personal growth');
-insert into books (id, title, author, genre, releaseDate, description) values (10, 'The Hobbit', 'Timmy Fleeman', 'Romance', '07/02/2010', 'A poetry anthology celebrating the beauty of language');
-insert into books (id, title, author, genre, releaseDate, description) values (11, 'The Help', 'Heloise Golding', 'Paranormal', '28/08/2003', 'A poetry anthology celebrating the beauty of language');
-insert into books (id, title, author, genre, releaseDate, description) values (12, 'The Da Vinci Code', 'Elijah Odgers', 'Dystopian', '26/04/1996', 'A chilling horror story that will haunt your dreams');
-insert into books (id, title, author, genre, releaseDate, description) values (13, 'The Bell Jar', 'Nathan Dran', 'Crime', '28/05/1981', 'A collection of short stories by a diverse group of authors');
-insert into books (id, title, author, genre, releaseDate, description) values (14, 'The Silence of the Lambs', 'Marjie Heys', 'Biography', '24/02/1961', 'A collection of short stories by a diverse group of authors');
-insert into books (id, title, author, genre, releaseDate, description) values (15, 'The Da Vinci Code', 'Petrina Wherton', 'Mystery', '24/02/2018', 'An epic fantasy tale of magic and adventure');
-insert into books (id, title, author, genre, releaseDate, description) values (16, 'The Great Gatsby', 'Randene Duff', 'Thriller', '16/01/1990', 'A gripping psychological thriller that will keep you on the edge of your seat');
-insert into books (id, title, author, genre, releaseDate, description) values (17, 'The Revenant', 'Adelheid Pafford', 'Young Adult', '05/06/1964', 'A poignant coming-of-age story set during World War II');
-insert into books (id, title, author, genre, releaseDate, description) values (18, 'The Silence of the Lambs', 'Rip Glossup', 'Biography', '15/11/2013', 'An epic fantasy tale of magic and adventure');
-insert into books (id, title, author, genre, releaseDate, description) values (19, 'The Joy Luck Club', 'Hulda Dobbinson', 'Cookbook', '10/11/1987', 'A guidebook to mindfulness and meditation practices');
-insert into books (id, title, author, genre, releaseDate, description) values (20, 'The Nightingale', 'Allina Dossantos', 'Self-Help', '20/04/1968', 'A historical fiction novel based on true events');
-insert into books (id, title, author, genre, releaseDate, description) values (21, 'The Bourne Identity', 'Frederic Nears', 'Satire', '28/02/2015', 'A collection of short stories by a diverse group of authors');
-insert into books (id, title, author, genre, releaseDate, description) values (22, 'The Girl on the Train', 'Davis Dalrymple', 'Poetry', '19/08/1967', 'A travel memoir recounting a journey to exotic lands');
-insert into books (id, title, author, genre, releaseDate, description) values (23, 'The Devil Wears Prada', 'Casi Pucker', 'Science Fiction', '23/07/2001', 'An epic fantasy tale of magic and adventure');
-insert into books (id, title, author, genre, releaseDate, description) values (24, 'The Silence of the Lambs', 'Tabina Laughnan', 'Horror', '28/10/1998', 'An epic fantasy tale of magic and adventure');
-insert into books (id, title, author, genre, releaseDate, description) values (25, 'To Kill a Mockingbird', 'Oliviero Colrein', 'Western', '24/01/2009', 'A thrilling mystery novel set in a small town');
-insert into books (id, title, author, genre, releaseDate, description) values (26, 'The Great Gatsby', 'Evita Badam', 'Cookbook', '24/07/2003', 'A graphic novel with stunning artwork and a compelling story');
-insert into books (id, title, author, genre, releaseDate, description) values (27, 'The Great Alone', 'Franchot Steketee', 'Historical Fiction', '13/11/1973', 'A cookbook filled with delicious recipes from around the world');
-insert into books (id, title, author, genre, releaseDate, description) values (28, 'The Immortal Life of Henrietta Lacks', 'Sasha Honywill', 'Biography', '10/03/1967', 'A travel memoir recounting a journey to exotic lands');
-insert into books (id, title, author, genre, releaseDate, description) values (29, 'The Tattooist of Auschwitz', 'Mallory Mauro', 'Mystery', '12/06/2011', 'A steamy romance novel with a forbidden love affair');
-insert into books (id, title, author, genre, releaseDate, description) values (30, 'The Devil Wears Prada', 'Helaina Machan', 'Memoir', '20/01/2016', 'A biography of a famous historical figure');
-insert into books (id, title, author, genre, releaseDate, description) values (31, 'The Scarlet Letter', 'Ado Franses', 'Humor', '02/02/1998', 'A satirical novel poking fun at modern society');
-insert into books (id, title, author, genre, releaseDate, description) values (32, 'The Martian', 'Daile Komorowski', 'Thriller', '21/02/1990', 'A biography of a famous historical figure');
-insert into books (id, title, author, genre, releaseDate, description) values (33, 'The Tattooist of Auschwitz', 'Caleb Gerdts', 'Memoir', '15/05/2020', 'A guidebook to mindfulness and meditation practices');
-insert into books (id, title, author, genre, releaseDate, description) values (34, 'The Night Circus', 'Jethro Winthrop', 'Adventure', '06/09/1973', 'A historical fiction novel based on true events');
-insert into books (id, title, author, genre, releaseDate, description) values (35, 'The Immortal Life of Henrietta Lacks', 'Mateo Beggi', 'Mystery', '10/12/1991', 'A graphic novel with stunning artwork and a compelling story');
-insert into books (id, title, author, genre, releaseDate, description) values (36, 'The Hunger Games', 'Athene Syde', 'Western', '07/04/1966', 'A self-help book offering practical advice for personal growth');
-insert into books (id, title, author, genre, releaseDate, description) values (37, 'The Shining', 'Davide Allawy', 'Non-Fiction', '25/07/2023', 'A biography of a famous historical figure');
-insert into books (id, title, author, genre, releaseDate, description) values (38, 'The Devil in the White City', 'Pearce McPheat', 'Travel', '10/07/2021', 'A thrilling mystery novel set in a small town');
-insert into books (id, title, author, genre, releaseDate, description) values (39, 'The Hunger Games', 'Merrick Denidge', 'Thriller', '12/02/1968', 'An epic fantasy tale of magic and adventure');
-insert into books (id, title, author, genre, releaseDate, description) values (40, 'The Road Less Traveled', 'Rikki Lazell', 'Horror', '06/02/1975', 'An epic fantasy tale of magic and adventure');
-insert into books (id, title, author, genre, releaseDate, description) values (41, 'The Girl on the Train', 'Shaine Ishchenko', 'Fantasy', '26/09/2010', 'A thrilling mystery novel set in a small town');
-insert into books (id, title, author, genre, releaseDate, description) values (42, 'The Goldfinch', 'Ian Reedie', 'Non-Fiction', '20/12/1973', 'A travel memoir recounting a journey to exotic lands');
-insert into books (id, title, author, genre, releaseDate, description) values (43, 'The Immortal Life of Henrietta Lacks', 'Augustine Shearsby', 'Travel', '21/05/1977', 'A steamy romance novel with a forbidden love affair');
-insert into books (id, title, author, genre, releaseDate, description) values (44, 'The Immortal Life of Henrietta Lacks', 'Dex Farrey', 'Graphic Novel', '13/10/1962', 'A biography of a famous historical figure');
-insert into books (id, title, author, genre, releaseDate, description) values (45, 'The Devil Wears Prada', 'Hall Stormouth', 'Art', '15/12/2002', 'A humorous comedy about a group of misfit friends');
-insert into books (id, title, author, genre, releaseDate, description) values (46, 'The Shining', 'Garrick Laxtonne', 'Humor', '19/10/2006', 'A children''s picture book about the power of imagination');
-insert into books (id, title, author, genre, releaseDate, description) values (47, 'The Nightingale', 'Rochette Gare', 'Satire', '06/06/1984', 'A chilling horror story that will haunt your dreams');
-insert into books (id, title, author, genre, releaseDate, description) values (48, 'The Bourne Identity', 'Jamima Stacey', 'Biography', '11/11/1972', 'A graphic novel with stunning artwork and a compelling story');
-insert into books (id, title, author, genre, releaseDate, description) values (49, 'The Lovely Bones', 'Killy Lampitt', 'Art', '15/09/2003', 'A self-help book offering practical advice for personal growth');
-insert into books (id, title, author, genre, releaseDate, description) values (50, 'The Help', 'Opal Shave', 'Horror', '09/01/2020', 'A collection of short stories by a diverse group of authors');
-insert into books (id, title, author, genre, releaseDate, description) values (51, 'The Glass Castle', 'Celle Boas', 'Non-Fiction', '06/01/1995', 'A sci-fi adventure exploring the mysteries of the universe');
-insert into books (id, title, author, genre, releaseDate, description) values (52, 'The Kite Runner', 'Robers Stute', 'Young Adult', '10/12/1968', 'A collection of short stories by a diverse group of authors');
-insert into books (id, title, author, genre, releaseDate, description) values (53, 'To Kill a Mockingbird', 'Stacy Giacopetti', 'Non-Fiction', '18/10/1994', 'A travel memoir recounting a journey to exotic lands');
-insert into books (id, title, author, genre, releaseDate, description) values (54, 'The Curious Incident of the Dog in the Night-Time', 'Marin Salvin', 'Western', '20/02/2006', 'A historical fiction novel based on true events');
-insert into books (id, title, author, genre, releaseDate, description) values (55, 'The Road Less Traveled', 'Mose Collishaw', 'Fantasy', '12/07/1988', 'A satirical novel poking fun at modern society');
-insert into books (id, title, author, genre, releaseDate, description) values (56, 'The Help', 'Berti Van Arsdall', 'Self-Help', '09/07/2019', 'A steamy romance novel with a forbidden love affair');
-insert into books (id, title, author, genre, releaseDate, description) values (57, 'The Curious Incident of the Dog in the Night-Time', 'Sibyl Mc Caughen', 'Western', '05/06/1969', 'A biography of a famous historical figure');
-insert into books (id, title, author, genre, releaseDate, description) values (58, 'The Immortal Life of Henrietta Lacks', 'Aurlie McGarrahan', 'Self-Help', '01/01/1975', 'A thrilling mystery novel set in a small town');
-insert into books (id, title, author, genre, releaseDate, description) values (59, 'The Hunger Games', 'Putnem Haugen', 'Mystery', '18/02/2019', 'A collection of short stories by a diverse group of authors');
-insert into books (id, title, author, genre, releaseDate, description) values (60, 'The Help', 'Theo Cragg', 'Crime', '28/11/1964', 'A satirical novel poking fun at modern society');
-insert into books (id, title, author, genre, releaseDate, description) values (61, 'The Great Alone', 'Jacklyn Danne', 'Satire', '04/09/1998', 'A humorous comedy about a group of misfit friends');
-insert into books (id, title, author, genre, releaseDate, description) values (62, 'The Hunger Games', 'Lyssa Gloucester', 'Poetry', '19/02/1993', 'A self-help book offering practical advice for personal growth');
-insert into books (id, title, author, genre, releaseDate, description) values (63, 'The Alchemist', 'Karrie Leonarde', 'Art', '08/07/1963', 'An epic fantasy tale of magic and adventure');
-insert into books (id, title, author, genre, releaseDate, description) values (64, 'The Picture of Dorian Gray', 'Tabbie Jallin', 'Poetry', '17/12/1979', 'An epic fantasy tale of magic and adventure');
-insert into books (id, title, author, genre, releaseDate, description) values (65, 'The Picture of Dorian Gray', 'Lyndsey Lelande', 'Art', '03/12/1989', 'A self-help book offering practical advice for personal growth');
-insert into books (id, title, author, genre, releaseDate, description) values (66, 'The Help', 'Ermina Himsworth', 'Chick Lit', '05/06/2024', 'A poignant coming-of-age story set during World War II');
-insert into books (id, title, author, genre, releaseDate, description) values (67, 'The Silence of the Lambs', 'Tremain Braxay', 'Crime', '19/11/2014', 'A children''s picture book about the power of imagination');
-insert into books (id, title, author, genre, releaseDate, description) values (68, 'The Help', 'Glori O''Hannay', 'Thriller', '14/11/2008', 'A poignant coming-of-age story set during World War II');
-insert into books (id, title, author, genre, releaseDate, description) values (69, 'The Girl with the Dragon Tattoo', 'Mona Wooland', 'Western', '20/05/1980', 'An epic fantasy tale of magic and adventure');
-insert into books (id, title, author, genre, releaseDate, description) values (70, 'The Picture of Dorian Gray', 'Obie Meininking', 'Graphic Novel', '12/08/1963', 'A steamy romance novel with a forbidden love affair');
-insert into books (id, title, author, genre, releaseDate, description) values (71, 'The Secret Garden', 'Robby Ife', 'Poetry', '16/08/1973', 'A gripping psychological thriller that will keep you on the edge of your seat');
-insert into books (id, title, author, genre, releaseDate, description) values (72, 'The Martian', 'Ruthie Dawtry', 'Crime', '21/06/2012', 'A thrilling mystery novel set in a small town');
-insert into books (id, title, author, genre, releaseDate, description) values (73, 'The Girl on the Train', 'Isobel Laurentino', 'Humor', '21/01/1978', 'A satirical novel poking fun at modern society');
-insert into books (id, title, author, genre, releaseDate, description) values (74, 'The Book Thief', 'Sidonnie Sprigging', 'Art', '27/01/1983', 'A thrilling mystery novel set in a small town');
-insert into books (id, title, author, genre, releaseDate, description) values (75, 'The Bell Jar', 'Addison Fardo', 'Poetry', '27/01/1969', 'A poetry anthology celebrating the beauty of language');
-insert into books (id, title, author, genre, releaseDate, description) values (76, 'To Kill a Mockingbird', 'Odille Du Hamel', 'Memoir', '17/02/2001', 'A heartwarming story about friendship and love');
-insert into books (id, title, author, genre, releaseDate, description) values (77, 'The Glass Castle', 'Cleo Wimmers', 'Poetry', '05/09/1981', 'A satirical novel poking fun at modern society');
-insert into books (id, title, author, genre, releaseDate, description) values (78, 'The Kite Runner', 'Anselma Yurygyn', 'Cookbook', '09/07/1982', 'A self-help book offering practical advice for personal growth');
-insert into books (id, title, author, genre, releaseDate, description) values (79, 'The Shining', 'Adelina Leonards', 'Young Adult', '29/10/1977', 'A satirical novel poking fun at modern society');
-insert into books (id, title, author, genre, releaseDate, description) values (80, 'The Picture of Dorian Gray', 'Bennie Meiningen', 'Romance', '04/01/1983', 'A sci-fi adventure exploring the mysteries of the universe');
-insert into books (id, title, author, genre, releaseDate, description) values (81, 'The Great Alone', 'Shaine Bergeon', 'Poetry', '25/04/1992', 'A thrilling mystery novel set in a small town');
-insert into books (id, title, author, genre, releaseDate, description) values (82, 'The Martian', 'Cristine Gregory', 'Memoir', '25/08/2004', 'A collection of short stories by a diverse group of authors');
-insert into books (id, title, author, genre, releaseDate, description) values (83, 'The Girl with the Dragon Tattoo', 'Aldin Blakebrough', 'Mystery', '25/09/1981', 'A heartwarming story about friendship and love');
-insert into books (id, title, author, genre, releaseDate, description) values (84, 'The Help', 'Simeon Coughtrey', 'Young Adult', '22/11/1981', 'A heartwarming story about friendship and love');
-insert into books (id, title, author, genre, releaseDate, description) values (85, 'The Picture of Dorian Gray', 'Jared Sooley', 'Dystopian', '08/04/2004', 'A travel memoir recounting a journey to exotic lands');
-insert into books (id, title, author, genre, releaseDate, description) values (86, 'The Fault in Our Stars', 'Ravid Bertie', 'Cookbook', '27/09/2015', 'A poignant coming-of-age story set during World War II');
-insert into books (id, title, author, genre, releaseDate, description) values (87, 'The Girl with the Dragon Tattoo', 'Lavena Fyfield', 'Satire', '19/10/2010', 'A poetry anthology celebrating the beauty of language');
-insert into books (id, title, author, genre, releaseDate, description) values (88, 'The Shining', 'Beale Pevie', 'Adventure', '28/09/2008', 'A steamy romance novel with a forbidden love affair');
-insert into books (id, title, author, genre, releaseDate, description) values (89, 'The Help', 'Rosette Fearnsides', 'Crime', '29/03/1994', 'A biography of a famous historical figure');
-insert into books (id, title, author, genre, releaseDate, description) values (90, 'The Hunger Games', 'Dorothee Coppo', 'Mystery', '14/10/1999', 'A satirical novel poking fun at modern society');
-insert into books (id, title, author, genre, releaseDate, description) values (91, 'The Lost City of Z', 'Donn Lowry', 'Art', '01/09/1964', 'A travel memoir recounting a journey to exotic lands');
-insert into books (id, title, author, genre, releaseDate, description) values (92, 'The Lord of the Rings', 'Pincas Plumb', 'Humor', '02/02/1987', 'A humorous comedy about a group of misfit friends');
-insert into books (id, title, author, genre, releaseDate, description) values (93, 'The Boys in the Boat', 'Skye Champion', 'Science Fiction', '16/12/1983', 'A thrilling mystery novel set in a small town');
-insert into books (id, title, author, genre, releaseDate, description) values (94, 'The Bourne Identity', 'Celestyn Banke', 'Travel', '19/08/1994', 'A heartwarming story about friendship and love');
-insert into books (id, title, author, genre, releaseDate, description) values (95, 'The Help', 'Estel Warricker', 'Young Adult', '12/01/2000', 'A gripping psychological thriller that will keep you on the edge of your seat');
-insert into books (id, title, author, genre, releaseDate, description) values (96, 'Pride and Prejudice', 'Ransell Bumpass', 'Travel', '07/04/2002', 'A gripping psychological thriller that will keep you on the edge of your seat');
-insert into books (id, title, author, genre, releaseDate, description) values (97, 'The Silence of the Lambs', 'Margalit Braid', 'Memoir', '21/02/2010', 'A cookbook filled with delicious recipes from around the world');
-insert into books (id, title, author, genre, releaseDate, description) values (98, 'The Stand', 'Cliff Fudger', 'Biography', '23/12/2023', 'An epic fantasy tale of magic and adventure');
-insert into books (id, title, author, genre, releaseDate, description) values (99, 'The Grapes of Wrath', 'Jeffry Shrive', 'Satire', '22/06/2023', 'A poignant coming-of-age story set during World War II');
-insert into books (id, title, author, genre, releaseDate, description) values (100, 'The Hobbit', 'Beauregard Duchesne', 'Science Fiction', '11/08/1978', 'A poignant coming-of-age story set during World War II');
 
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('A Tale of Two Cities', 'Charles Dickens', 'English', '1859', '200', 'Historical fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Little Prince (Le Petit Prince)', 'Antoine de Saint-Exupéry', 'French', '1943', '200', 'Novella');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Harry Potter and the Philosopher''s Stone', 'J. K. Rowling', 'English', '1997', '120', 'Fantasy');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('And Then There Were None', 'Agatha Christie', 'English', '1939', '100', 'Mystery');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Dream of the Red Chamber (紅樓夢)', 'Cao Xueqin', 'Chinese', '1791', '100', 'Family saga');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Hobbit', 'J. R. R. Tolkien', 'English', '1937', '100', 'Fantasy');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Lion, the Witch and the Wardrobe', 'C. S. Lewis', 'English', '1950', '85', 'Fantasy, Children''s fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('She: A History of Adventure', 'H. Rider Haggard', 'English', '1887', '83', 'Adventure');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Vardi Wala Gunda (वर्दी वाला गुंडा)', 'Ved Prakash Sharma', 'Hindi', '1992', '80', 'Detective');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Da Vinci Code', 'Dan Brown', 'English', '2003', '80', 'Mystery thriller');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Harry Potter and the Chamber of Secrets', 'J. K. Rowling', 'English', '1998', '77', 'Fantasy');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Harry Potter and the Prisoner of Azkaban', 'J. K. Rowling', 'English', '1999', '65', 'Fantasy');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Harry Potter and the Goblet of Fire', 'J. K. Rowling', 'English', '2000', '65', 'Fantasy');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Harry Potter and the Order of the Phoenix', 'J. K. Rowling', 'English', '2003', '65', 'Fantasy');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Harry Potter and the Half-Blood Prince', 'J. K. Rowling', 'English', '2005', '65', 'Fantasy');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Harry Potter and the Deathly Hallows', 'J. K. Rowling', 'English', '2007', '65', 'Fantasy');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Alchemist (O Alquimista)', 'Paulo Coelho', 'Portuguese', '1988', '65', 'Fantasy');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Catcher in the Rye', 'J. D. Salinger', 'English', '1951', '65', 'Coming-of-age');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Bridges of Madison County', 'Robert James Waller', 'English', '1992', '60', 'Romance');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Ben-Hur: A Tale of the Christ', 'Lew Wallace', 'English', '1880', '50', 'Historical fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('You Can Heal Your Life', 'Louise Hay', 'English', '1984', '50', 'Self-help');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('One Hundred Years of Solitude (Cien años de soledad)', 'Gabriel García Márquez', 'Spanish', '1967', '50', 'Magic realism');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Lolita', 'Vladimir Nabokov', 'English', '1955', '50', 'Novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Heidi', 'Johanna Spyri', 'German', '1880', '50', 'Children''s fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Common Sense Book of Baby and Child Care', 'Benjamin Spock', 'English', '1946', '50', 'Manual');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Anne of Green Gables', 'Lucy Maud Montgomery', 'English', '1908', '50', 'Children''s novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Black Beauty', 'Anna Sewell', 'English', '1877', '50', 'Children''s literature');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Name of the Rose (Il Nome della Rosa)', 'Umberto Eco', 'Italian', '1980', '50', 'Historical novel, mystery');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Eagle Has Landed', 'Jack Higgins', 'English', '1975', '50', 'War, thriller');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Watership Down', 'Richard Adams', 'English', '1972', '50', 'Fantasy');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Hite Report', 'Shere Hite', 'English', '1976', '50', 'Sexology');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Charlotte''s Web', 'E. B. White; illustrated by Garth Williams', 'English', '1952', '50', 'Children''s fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Ginger Man', 'J. P. Donleavy', 'English', '1955', '50', 'Novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Tale of Peter Rabbit', 'Beatrix Potter', 'English', '1902', '45', 'Children''s Literature');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Jonathan Livingston Seagull', 'Richard Bach', 'English', '1970', '44', 'Novella, Self-help');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Very Hungry Caterpillar', 'Eric Carle', 'English', '1969', '43', 'Children''s Literature, picture book');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('A Message to Garcia', 'Elbert Hubbard', 'English', '1899', '40', 'Essay/Literature');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('To Kill a Mockingbird', 'Harper Lee', 'English', '1960', '40', 'Southern Gothic, Bildungsroman');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Flowers in the Attic', 'V. C. Andrews', 'English', '1979', '40', 'Gothic horror, Family saga');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Cosmos', 'Carl Sagan', 'English', '1980', '40', 'Popular science, Anthropology, Astrophysics, Cosmology, Philosophy, History');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Sophie''s World (Sofies verden)', 'Jostein Gaarder', 'Norwegian', '1991', '40', 'Philosophical novel, Young adult');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Angels & Demons', 'Dan Brown', 'English', '2000', '39', 'Mystery-thriller');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Kane and Abel', 'Jeffrey Archer', 'English', '1979', '37', 'Novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('How the Steel Was Tempered (Как закалялась сталь)', 'Nikolai Ostrovsky', 'Russian', '1932', '36', 'Socialist realist novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('War and Peace (Война и мир)', 'Leo Tolstoy', 'Russian', '1869', '36', 'Historical novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Adventures of Pinocchio (Le avventure di Pinocchio)', 'Carlo Collodi', 'Italian', '1881', '35', 'Fantasy, Children''s fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Diary of Anne Frank (Het Achterhuis)', 'Anne Frank', 'Dutch', '1947', '35', 'Historical non-fiction, Autobiography, Memoir, Bildungsroman / Coming of Age, Jewish literature');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Your Erroneous Zones', 'Wayne Dyer', 'English', '1976', '35', 'Self-help');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Thorn Birds', 'Colleen McCullough', 'English', '1977', '33', 'Romantic family saga');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Purpose Driven Life', 'Rick Warren', 'English', '2002', '33', 'Christian literature');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Kite Runner', 'Khaled Hosseini', 'English', '2003', '31', 'Bildungsroman, Historical fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Valley of the Dolls', 'Jacqueline Susann', 'English', '1966', '31', 'Novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Alcoholics Anonymous Big Book', 'Bill Wilson', 'English', '1939', '30', 'Self-help');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('How to Win Friends and Influence People', 'Dale Carnegie', 'English', '1936', '30', 'Self-help');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Great Gatsby', 'F. Scott Fitzgerald', 'English', '1925', '30', 'Novel, tragedy');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Gone with the Wind', 'Margaret Mitchell', 'English', '1936', '30', 'Historical fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Rebecca', 'Daphne du Maurier', 'English', '1938', '30', 'Gothic novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Nineteen Eighty-Four', 'George Orwell', 'English', '1949', '30', 'Dystopian, political fiction, social science fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Revolt of Mamie Stover', 'William Bradford Huie', 'English', '1951', '30', 'Fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Girl with the Dragon Tattoo (Män som hatar kvinnor)', 'Stieg Larsson', 'Swedish', '2005', '30', 'Fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Lost Symbol', 'Dan Brown', 'English', '2009', '30', 'Fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Hunger Games', 'Suzanne Collins', 'English', '2008', '29', 'Young adult fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('James and the Giant Peach', 'Roald Dahl', 'English', '1961', '28', 'Children''s novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Young Guard (Молодая гвардия)', 'Alexander Alexandrovich Fadeyev', 'Russian', '1945', '26', 'Young adult historical novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Who Moved My Cheese?', 'Spencer Johnson', 'English', '1998', '29', 'Self-help, motivational, business fable, psychology, leadership, parable');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('A Brief History of Time', 'Stephen Hawking', 'English', '1988', '25', 'Popular science');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Paul et Virginie', 'Jacques-Henri Bernardin de Saint-Pierre', 'French', '1788', '25', 'Novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Lust for Life', 'Irving Stone', 'English', '1934', '25', 'Biographical novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Wind in the Willows', 'Kenneth Grahame', 'English', '1908', '25', 'Children''s literature');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The 7 Habits of Highly Effective People', 'Stephen R. Covey', 'English', '1989', '25', 'Self-help');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Virgin Soil Upturned (Поднятая целина)', 'Mikhail Sholokhov', 'Russian', '1935', '24', 'Novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Celestine Prophecy', 'James Redfield', 'English', '1993', '23', 'New-age spiritual novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Fault in Our Stars', 'John Green', 'English', '2012', '23', 'Young adult romantic novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Girl on the Train', 'Paula Hawkins', 'English', '2015', '23', 'Thriller');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Shack', 'William P. Young', 'English', '2007', '22', 'Novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Uncle Styopa (Дядя Стёпа)', 'Sergey Mikhalkov', 'Russian', '1936', '21', 'Children''s Literature, picture book');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Godfather', 'Mario Puzo', 'English', '1969', '21', 'Crime novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Love Story', 'Erich Segal', 'English', '1970', '21', 'Romance novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Catching Fire', 'Suzanne Collins', 'English', '2009', '21', 'Young Adult novel, adventure, dystopian, science fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Mockingjay', 'Suzanne Collins', 'English', '2010', '20', 'Young Adult novel, adventure, war, science fiction, action thriller');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Kitchen (キッチン)', 'Banana Yoshimoto', 'Japanese', '1988', '20', 'Japanese novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Andromeda Nebula (Туманность Андромеды)', 'Ivan Yefremov', 'Russian', '1957', '20', 'Science fiction novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Autobiography of a Yogi (योगी कथामृत)', 'Paramahansa Yogananda', 'Hindi', '1946', '20', 'Autobiography');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Gone Girl', 'Gillian Flynn', 'English', '2012', '20', 'Crime thriller novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('All Quiet on the Western Front (Im Westen nichts Neues)', 'Erich Maria Remarque', 'German', '1929', '20', 'War novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Bermuda Triangle', 'Charles Berlitz', 'English', '1974', '20', '');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Things Fall Apart', 'Chinua Achebe', 'English', '1958', '20', 'Novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Animal Farm', 'George Orwell', 'English', '1945', '20', 'Satirical allegorical novella, Political satire, Dystopian Fiction, Roman à clef');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Wolf Totem (狼图腾)', 'Jiang Rong', 'Chinese', '2004', '20', 'Semi-autobiographical novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Happy Hooker: My Own Story', 'Xaviera Hollander', 'English', '1971', '20', 'Memoir');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Jaws', 'Peter Benchley', 'English', '1974', '20', 'Thriller');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Love You Forever', 'Robert Munsch', 'English', '1986', '20', 'Children''s literature, picture book, fiction');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Women''s Room', 'Marilyn French', 'English', '1977', '20', 'Feminist novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('What to Expect When You''re Expecting', 'Arlene Eisenberg and Heidi Murkoff', 'English', '1984', '20', 'Pregnancy guide');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Adventures of Huckleberry Finn', 'Mark Twain', 'English', '1885', '20', 'Picaresque novel, Bildungsroman, satire, Robinsonade');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Secret Diary of Adrian Mole, Aged 13¾', 'Sue Townsend', 'English', '1982', '20', 'Young adult novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Pride and Prejudice', 'Jane Austen', 'English', '1813', '20', 'Classic regency novel, romance');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Kon-Tiki: Across the Pacific in a Raft (Kon-Tiki ekspedisjonen)', 'Thor Heyerdahl', 'Norwegian', '1950', '20', 'Travel literature');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Good Soldier Švejk (Osudy dobrého vojáka Švejka za světové války)', 'Jaroslav Hašek', 'Czech', '1923', '20', 'Unfinished satirical dark comedy novel');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('Where the Wild Things Are', 'Maurice Sendak', 'English', '1963', '20', 'Children''s picture book');
+INSERT INTO books ("title", "author", "language", "releaseYear", "sales", "genre") VALUES ('The Power of Positive Thinking', 'Norman Vincent Peale', 'English', '1952', '20', 'Self-help');
 
 create table reviews (
 	id INT,
@@ -531,7 +532,7 @@ insert into friendships (id, username) values (149, 'dmitchley44');
 insert into friendships (id, username) values (150, 'phubane45');
 
 
-create table categories (
+create table userbooks (
 	id INT,
 	username VARCHAR(50),
 	category VARCHAR(17)
@@ -787,63 +788,73 @@ insert into userbooks (id, username, category) values (248, 'bborles6v', 'Want t
 insert into userbooks (id, username, category) values (249, 'vmatyukon6w', 'Read');
 insert into userbooks (id, username, category) values (250, 'jkeys6x', 'Read');
 
-alter table  public.friendships add user1_id int null;
-alter table  public.friendships add user2_id int null;
+-- adjusting table columns, adding primary keys
+alter table books add column id serial primary key;
+alter table books drop column language;
+alter table books drop column sales;
+alter table books add constraint tab_unique_books unique (title, author);
+
+alter table friendships add constraint tab_friendships_pk primary key (id);
+alter table  friendships add user1_id int null;
+alter table  friendships add user2_id int null;
 alter table friendships drop column username;
 
+alter table users add constraint tab_users_pk primary key (id);
+alter table userbooks add constraint tab_userbooks_pk primary key (id);
+
+alter table reviews add primary key (id);
+alter table  reviews add user_id int null;
+alter table  reviews add book_id int null;
+
+-- friendships table
 update friendships
-set user1_id = FLOOR(1 + (RANDOM() * 50))
-WHERE user1_id IS NULL;
+set user1_id = floor(1 + (random() * 50))
+where user1_id is null;
 
-UPDATE friendships
-SET user2_id = (
-    CASE
-        WHEN user1_id = new_id THEN (new_id::INT % 50) + 1
-        ELSE new_id
-    END
+update friendships
+set user2_id = (
+    case
+        when user1_id = new_id then (new_id::int % 50) + 1
+        else new_id
+    end
 )
-FROM (
-    SELECT id, FLOOR(1 + RANDOM() * 50) AS new_id
-    FROM friendships
-) AS subquery
-WHERE friendships.id = subquery.id;
+from (
+    select id, floor(1 + random() * 50) as new_id
+    from friendships
+) as subquery
+where friendships.id = subquery.id;
 
-alter table public.friendships add constraint tab_diff_users check (user1_id != user2_id);
+alter table friendships add constraint tab_diff_users check (user1_id != user2_id);
 
-alter table public.friendships add constraint tab_friendships_pk primary key (id);
+update friendships
+set user1_id = least(user1_id, user2_id),
+    user2_id = greatest(user1_id, user2_id);
 
-UPDATE friendships
-SET user1_id = LEAST(user1_id, user2_id),
-    user2_id = GREATEST(user1_id, user2_id);
-
-DELETE FROM friendships
-WHERE ctid NOT IN (
-    SELECT MIN(ctid)
-    FROM friendships
-    GROUP BY user1_id, user2_id
+delete from friendships
+where ctid not in (
+    select min(ctid)
+    from friendships
+    group by user1_id, user2_id
 );
 
-ALTER TABLE friendships
-ADD CONSTRAINT unique_friendship_pair UNIQUE (user1_id, user2_id);
+alter table friendships
+add constraint unique_friendship_pair unique (user1_id, user2_id);
 
-alter table public.users add constraint tab_users_pk primary key (id);
-
-alter table public.friendships add constraint
+alter table friendships add constraint
 tab_user1_friendships_fk foreign key (user1_id)
-references public.users(id)
+references users(id)
 on delete restrict on update restrict deferrable;
 
-alter table public.friendships add constraint
+alter table friendships add constraint
 tab_user2_friendships_fk foreign key (user2_id)
-references public.users(id)
+references users(id)
 on delete restrict on update restrict deferrable;
 
-ALTER TABLE users
-ADD CONSTRAINT unique_user UNIQUE (username);
+-- users table
+alter table users
+add constraint unique_user unique (username);
 
-alter table public.userbooks add constraint tab_userbooks_pk primary key (id);
-alter table public.books add constraint tab_books_pk primary key (id);
-
+-- categories and userbooks tables
 create table public.categories (
     id serial not null,
     category varchar(50) not null,
@@ -854,71 +865,67 @@ insert into public.categories (category)
 select distinct category from userbooks
 order by category;
 
-alter table  public.userbooks add category_id int null;
+alter table  userbooks add category_id int null;
 update userbooks
 set category_id = categories.id
 from categories
 where userbooks.category = categories.category;
 
-alter table public.userbooks drop column category;
+alter table userbooks drop column category;
 
-alter table public.userbooks add constraint
+alter table userbooks add constraint
 tab_userbooks_category_fk foreign key (category_id)
 references public.categories(id)
 on delete restrict on update restrict deferrable;
 
-alter table public.userbooks drop column username;
+alter table userbooks drop column username;
 
-alter table  public.userbooks add user_id int null;
-alter table  public.userbooks add book_id int null;
-
-update userbooks
-set user_id = FLOOR(1 + (RANDOM() * 50))
-WHERE user_id IS NULL;
+alter table  userbooks add user_id int null;
+alter table  userbooks add book_id int null;
 
 update userbooks
-set book_id = FLOOR(1 + (RANDOM() * 100))
-WHERE book_id IS NULL;
+set user_id = floor(1 + (random() * 50))
+where user_id is null;
 
-alter table public.userbooks add constraint
+update userbooks
+set book_id = floor(1 + (random() * 100))
+where book_id is null;
+
+alter table userbooks add constraint
 tab_userbooks_user_fk foreign key (user_id)
-references public.users(id)
+references users(id)
 on delete restrict on update restrict deferrable;
 
-alter table public.userbooks add constraint
+alter table userbooks add constraint
 tab_userbooks_book_fk foreign key (book_id)
-references public.books(id)
+references books(id)
 on delete restrict on update restrict deferrable;
 
-DELETE FROM userbooks
-WHERE ctid NOT IN (
-    SELECT MIN(ctid)
-    FROM userbooks
-    GROUP BY user_id, book_id
+delete from userbooks
+where ctid not in (
+    select min(ctid)
+    from userbooks
+    group by user_id, book_id
 );
 
-ALTER TABLE userbooks
-ADD CONSTRAINT unique_userbook_pair UNIQUE (user_id, book_id);
+alter table userbooks
+add constraint unique_userbook_pair unique (user_id, book_id);
 
-alter table  public.reviews add user_id int null;
-alter table  public.reviews add book_id int null;
+-- reviews table
+update reviews
+set user_id = floor(1 + (random() * 50))
+where user_id is null;
 
 update reviews
-set user_id = FLOOR(1 + (RANDOM() * 50))
-WHERE user_id IS NULL;
+set book_id = floor(1 + (random() * 100))
+where book_id is null;
 
-update reviews
-set book_id = FLOOR(1 + (RANDOM() * 100))
-WHERE book_id IS NULL;
-
-alter table public.reviews add constraint
+alter table reviews add constraint
 tab_reviews_user_fk foreign key (user_id)
-references public.users(id)
+references users(id)
 on delete restrict on update restrict deferrable;
 
-alter table public.reviews add constraint
+alter table reviews add constraint
 tab_reviews_book_fk foreign key (book_id)
-references public.books(id)
+references books(id)
 on delete restrict on update restrict deferrable;
-
-alter table reviews add primary key (id);
