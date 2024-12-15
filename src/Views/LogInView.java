@@ -47,15 +47,15 @@ public class LogInView extends JFrame {
         add(message);
     }
 
-    public String getUsername(){
+    public String getUsername() {
         return usernameField.getText();
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return String.valueOf(passwordField.getPassword());
     }
 
-    public void setMessageVisible(){
+    public void setMessageVisible() {
         message.setVisible(true);
     }
 

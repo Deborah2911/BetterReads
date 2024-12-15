@@ -929,3 +929,12 @@ alter table reviews add constraint
 tab_reviews_book_fk foreign key (book_id)
 references books(id)
 on delete restrict on update restrict deferrable;
+
+insert into users (id, username, password, name) values (51, 'deni', 'password', 'Denisa Dersedan');
+insert into users (id, username, password, name) values (52, 'deborah', 'password', 'Deborah Florea');
+
+CREATE SEQUENCE users_id_seq;
+ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq');
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+SELECT setval('users_id_seq', 52, true);
+

@@ -1,5 +1,10 @@
 package Models;
 
+import Controller.DBConnection;
+import Controller.User;
+
+import java.util.List;
+
 public class SignUpModel {
 
     public boolean checkExistingUsername(String username){
@@ -7,6 +12,13 @@ public class SignUpModel {
         //return false if it exists and true otherwise
         if(username.isBlank())
             return false;
+
+        List<User> users = DBConnection.getUser();
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return false;
+            }
+        }
         return true;
     }
 

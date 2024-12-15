@@ -24,6 +24,7 @@ public class SignUpController {
         public void actionPerformed(ActionEvent e) {
             if(signUpModel.checkExistingUsername(signUpView.getUsername())){
                 if(signUpModel.checkSamePassword(signUpView.getPassword1(), signUpView.getPassword2())) {
+                    DBConnection.insertUser(signUpView.getUsername(), signUpView.getPassword1(), signUpView.getUsername());
                     ReleasesModel releasesModel = new ReleasesModel();
                     ReleasesView releasesView = new ReleasesView();
                     ReleasesController releasesController = new ReleasesController(releasesModel, releasesView);
