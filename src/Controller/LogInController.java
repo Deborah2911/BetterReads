@@ -3,6 +3,7 @@ package Controller;
 import Models.LogInModel;
 import Models.ReleasesModel;
 import Models.SignUpModel;
+import Views.AccountView;
 import Views.LogInView;
 import Views.ReleasesView;
 import Views.SignUpView;
@@ -39,6 +40,8 @@ public class LogInController {
                 ReleasesModel releasesModel = new ReleasesModel();
                 ReleasesView releasesView = new ReleasesView();
                 ReleasesController releasesController = new ReleasesController(releasesModel, releasesView);
+                AccountView accountView = new AccountView();
+                accountView.setAccountDetails(logInViewPage.getName(), logInViewPage.getUsername(), logInViewPage.getPassword());
                 //find out how to close this page when moving to another
             }
             else{

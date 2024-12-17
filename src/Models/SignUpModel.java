@@ -7,6 +7,14 @@ import java.util.List;
 
 public class SignUpModel {
 
+    public boolean checkExistingFullName(String fullName) {
+        return !fullName.isBlank();
+    }
+
+    public boolean checkExistingPassword(String password) {
+        return !password.isBlank();
+    }
+
     public boolean checkExistingUsername(String username){
         //test using select query if username already exists
         //return false if it exists and true otherwise

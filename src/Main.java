@@ -11,8 +11,5 @@ public class Main {
         LogInModel model = new LogInModel();
         LogInView view = new LogInView();
         LogInController logInController = new LogInController(model, view);
-
-        List<Book> books = DBConnection.getBook();
-        System.out.println(books);
     }
 }
