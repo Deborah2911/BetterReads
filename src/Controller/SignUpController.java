@@ -1,5 +1,6 @@
 package Controller;
 
+import Database.DBConnection;
 import Models.ReleasesModel;
 import Models.SignUpModel;
 import Views.ReleasesView;

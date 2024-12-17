@@ -1,7 +1,7 @@
 package Models;
 
-import Controller.DBConnection;
-import Controller.User;
+import Database.DBConnection;
+import Database.User;
 
 import java.util.List;
 

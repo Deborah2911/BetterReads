@@ -930,11 +930,22 @@ tab_reviews_book_fk foreign key (book_id)
 references books(id)
 on delete restrict on update restrict deferrable;
 
+-- Inserted our users
 insert into users (id, username, password, name) values (51, 'deni', 'password', 'Denisa Dersedan');
 insert into users (id, username, password, name) values (52, 'deborah', 'password', 'Deborah Florea');
 
+-- Made sure the user id is SERIAL, and set it to the current number of users
 CREATE SEQUENCE users_id_seq;
 ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq');
 ALTER SEQUENCE users_id_seq OWNED BY users.id;
 SELECT setval('users_id_seq', 52, true);
 
+-- Used to have releaseDate for each book, not just releaseYear
+ALTER TABLE books RENAME COLUMN "releaseYear" TO releaseDate;
+ALTER TABLE books ALTER COLUMN releaseDate TYPE DATE USING TO_DATE(releaseDate::TEXT, 'YYYY');
+UPDATE books
+SET releaseDate = MAKE_DATE(
+        EXTRACT(YEAR FROM releaseDate)::INT,           -- Keep the original year
+        FLOOR(RANDOM() * 12 + 1)::INT,                 -- Random month (1-12)
+        FLOOR(RANDOM() * 28 + 1)::INT                  -- Random day (1-28, safe for all months)
+                  );

@@ -1,4 +1,4 @@
-package Controller;
+package Database;
 
 public class User {
     private int id;

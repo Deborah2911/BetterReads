@@ -1,8 +1,7 @@
-package Controller;
+package Database;
 
 import java.sql.*;
 import java.util.*;
-import java.util.logging.Logger;
 
 public class DBConnection {
     public static List<User> getUser() {
@@ -60,5 +59,35 @@ public class DBConnection {
         }
     }
 
+    public static List<Book> getBook() {
+        String url = "jdbc:postgresql://localhost:5432/betterreads";
+        String user = "postgres";
+        String password = "password";
+
+        try(Connection connection = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Connected to database!");
+
+            Statement statement = connection.createStatement();
+
+            String query = "SELECT * FROM \"books\"";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            List<Book> books = new ArrayList<>();
+            while (resultSet.next()) {
+                books.add(new Book(
+                        resultSet.getInt("id"),
+                        resultSet.getString("title"),
+                        resultSet.getString("author"),
+                        resultSet.getDate("releaseDate"),
+                        resultSet.getString("genre")
+                ));
+            }
+            return books;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return List.of();
+    }
 
 }
