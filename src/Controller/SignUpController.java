@@ -31,6 +31,7 @@ public class SignUpController {
                             ReleasesModel releasesModel = new ReleasesModel();
                             ReleasesView releasesView = new ReleasesView();
                             ReleasesController releasesController = new ReleasesController(releasesModel, releasesView);
+                            releasesView.dispose();
                         } else{
                             signUpView.setMessagePasswordVisible();
                         }

@@ -42,7 +42,7 @@ public class LogInController {
                 ReleasesController releasesController = new ReleasesController(releasesModel, releasesView);
                 AccountView accountView = new AccountView();
                 accountView.setAccountDetails(logInViewPage.getName(), logInViewPage.getUsername(), logInViewPage.getPassword());
-                //find out how to close this page when moving to another
+                logInViewPage.dispose();
             }
             else{
                 logInViewPage.setMessageVisible();

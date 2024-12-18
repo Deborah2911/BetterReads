@@ -4,10 +4,11 @@ import java.sql.*;
 import java.util.*;
 
 public class DBConnection {
+
     public static List<User> getUser() {
-        String url = "jdbc:postgresql://localhost:5432/betterreads";
+        String url = "jdbc:postgresql://localhost:5432/postgres";
         String user = "postgres";
-        String password = "password";
+        String password = "Berti2001!";
 
         try(Connection connection = DriverManager.getConnection(url, user, password)) {
             System.out.println("Connected to database!");
@@ -36,9 +37,9 @@ public class DBConnection {
     }
 
     public static void insertUser(String username, String passwordUser, String name) {
-        String url = "jdbc:postgresql://localhost:5432/betterreads";
+        String url = "jdbc:postgresql://localhost:5432/postgres";
         String user = "postgres";
-        String password = "password";
+        String password = "Berti2001!";
 
         String query = "INSERT INTO users (username, password, name) VALUES (?, ?, ?)";
 
@@ -60,9 +61,9 @@ public class DBConnection {
     }
 
     public static List<Book> getBook() {
-        String url = "jdbc:postgresql://localhost:5432/betterreads";
+        String url = "jdbc:postgresql://localhost:5432/postgres";
         String user = "postgres";
-        String password = "password";
+        String password = "Berti2001!";
 
         try(Connection connection = DriverManager.getConnection(url, user, password)) {
             System.out.println("Connected to database!");
@@ -90,4 +91,33 @@ public class DBConnection {
         return List.of();
     }
 
+    public static List<Reviews> getReviews(){
+        String url = "jdbc:postgresql://localhost:5432/postgres";
+        String user = "postgres";
+        String password = "Berti2001!";
+
+        try(Connection connection = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Connected to database!");
+
+            Statement statement = connection.createStatement();
+
+            String query = "select rating, title, author, name from \"reviews\" join \"books\" on reviews.book_id = books.id join \"users\" on reviews.user_id = users.id";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            List<Reviews> reviews = new ArrayList<>();
+            while (resultSet.next()) {
+                reviews.add(new Reviews(
+                        resultSet.getDouble("rating"),
+                        resultSet.getString("title"),
+                        resultSet.getString("author"),
+                        resultSet.getString("name")
+                ));
+            }
+            return reviews;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return List.of();
+    }
 }
