@@ -3,22 +3,29 @@ package Views;
 import javax.swing.*;
 import java.awt.*;
 
-import static java.awt.GridBagConstraints.FIRST_LINE_START;
+import static java.awt.Font.BOLD;
+import static java.awt.Font.MONOSPACED;
+import static java.awt.GridBagConstraints.*;
 
 public class GridBagLayoutReviews {
     public static JPanel createPanel(JLabel l1, JLabel l2, JLabel l3, JLabel l4) {
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        gbc.gridx = 0;
+        //userFullName
+        gbc.gridx = 1;
         gbc.gridy = 1;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_END;
+        gbc.anchor = NORTHWEST;
         gbc.weighty = 0.0;
         gbc.weightx = 1.0;
         gbc.insets = new Insets(10, 5, 5, 0);
         gbc.ipady = 0;
+        l1.setFont(Font.getFont(MONOSPACED));
+        l1.setForeground(new Color(75, 37, 100));
+        l1.setFont(Font.getFont(String.valueOf(BOLD)));
         panel.add(l1, gbc);
 
+        //book cover
         gbc.fill = GridBagConstraints.VERTICAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -30,20 +37,25 @@ public class GridBagLayoutReviews {
         gbc.gridheight = 2;
         panel.add(l2, gbc);
 
+        //title and author
         gbc.gridx = 1;
         gbc.gridy = 1;
-        gbc.anchor = FIRST_LINE_START;
+        gbc.anchor = CENTER;
         gbc.gridheight = 1;
+        //l3.setFont(Font.getFont(MONOSPACED));
         panel.add(l3, gbc);
 
+        //rating
         gbc.gridx = 2;
         gbc.gridy = 1;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_END;
+        gbc.anchor = LINE_END;
         gbc.weighty = 0.0;
         gbc.weightx = 1.0;
         gbc.insets = new Insets(0, 0, 30, 10);
         gbc.ipady = 10;
         gbc.ipadx = 10;
+        l4.setForeground(new Color(255, 200, 0));
+        //l4.setFont(Font.getFont(String.valueOf(BOLD)));
         panel.add(l4, gbc);
 
         panel.setPreferredSize(new Dimension(500, 150));
