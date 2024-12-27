@@ -16,7 +16,7 @@ public class ReleasesController {
     public ReleasesController(ReleasesModel model, ReleasesView view){
         this.releasesModel=model;
         this.releasesView=view;
-        releasesView.setAccountButtonActionListener(new AccountListener());
+        //releasesView.setAccountButtonActionListener(new AccountListener());
         //releasesView.setVisible(true);
     }
 
