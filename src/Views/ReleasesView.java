@@ -80,8 +80,13 @@ public class ReleasesView extends JFrame {
             String currentMonthYear = currentDate.substring(0, 7);
 
             if(currentMonthYear.equals(monthYear)) {
-                JLabel titleAuthor = new JLabel(release.getTitle()+"   by  "+release.getAuthor());
-                JLabel releaseDate = new JLabel("Releases "+release.getReleaseDate());
+
+                SimpleDateFormat ft2 = new SimpleDateFormat("dd-MM-yyyy");
+
+                String bookReleaseDate2 = ft2.format(release.getReleaseDate());
+
+                JLabel titleAuthor = new JLabel(release.getTitle()+"   by   "+release.getAuthor());
+                JLabel releaseDate = new JLabel("Releases "+bookReleaseDate2 + " :");
 
                 ImageIcon image = new ImageIcon("D:\\Facultate\\Anul_2\\OOP\\BetterReads\\reviews_page.png");
                 Image scaledImage = image.getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);

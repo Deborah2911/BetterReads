@@ -20,9 +20,9 @@ public class GridBagLayoutReviews {
         gbc.weightx = 1.0;
         gbc.insets = new Insets(10, 5, 5, 0);
         gbc.ipady = 0;
-        l1.setFont(Font.getFont(MONOSPACED));
+        //l1.setFont(Font.getFont(MONOSPACED));
         l1.setForeground(new Color(75, 37, 100));
-        l1.setFont(Font.getFont(String.valueOf(BOLD)));
+        //l1.setFont(Font.getFont(String.valueOf(BOLD)));
         panel.add(l1, gbc);
 
         //book cover
@@ -54,8 +54,8 @@ public class GridBagLayoutReviews {
         gbc.insets = new Insets(0, 0, 30, 10);
         gbc.ipady = 10;
         gbc.ipadx = 10;
-        l4.setBackground(Color.GRAY);
-        l4.setForeground(new Color(255, 200, 0));
+        //l4.setBackground(Color.GRAY);
+        l4.setForeground(new Color(255, 100, 0));
         //l4.setFont(Font.getFont(String.valueOf(BOLD)));
         panel.add(l4, gbc);
 
@@ -70,7 +70,7 @@ public class GridBagLayoutReviews {
         //releaseDate
         gbc.gridx = 1;
         gbc.gridy = 1;
-        gbc.anchor = FIRST_LINE_START;
+        gbc.anchor = NORTHWEST;
         gbc.weighty = 0.0;
         gbc.weightx = 1.0;
         gbc.insets = new Insets(10, 0, 5, 30);
