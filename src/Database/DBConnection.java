@@ -4,14 +4,27 @@ import java.sql.*;
 import java.util.*;
 
 public class DBConnection {
-    private static final String urlDeni = "jdbc:postgresql://localhost:5432/betterreads";
-    private static final String urlDebo = "jdbc:postgresql://localhost:5432/postgres";
-    private static final String passwordDeni = "password";
-    private static final String passwordDebo = "Berti2001!";
+    private static final String url = "jdbc:postgresql://localhost:5432/betterreads"; //-- Uncomment this if you are Deni, comment if you are Debo
+    //private static final String url = "jdbc:postgresql://localhost:5432/postgres"; //-- Uncomment this if you are Debo, comment if you are Deni
+    private static final String password = "password"; //-- Uncomment this if you are Deni, comment if you are Debo
+    //private static final String password = "Berti2001!"; //--Uncomment this if you are Debo, comment if you are Deni
+    private static final String user = "postgres";
+
+    public static int getUserIdByUsername(String username) {
+        String query = "SELECT id FROM users WHERE username = ?";
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+             PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setString(1, username);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1; // Return -1 if the user is not found
+    }
     public static List<User> getUser() {
-        String url = urlDeni;
-        String user = "postgres";
-        String password = passwordDeni;
 
         try(Connection connection = DriverManager.getConnection(url, user, password)) {
             System.out.println("Connected to database!");
@@ -37,11 +50,85 @@ public class DBConnection {
         }
         return List.of();
     }
+    public static List<Book> getBook() {
+
+        try(Connection connection = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Connected to database!");
+
+            Statement statement = connection.createStatement();
+
+            String query = "SELECT * FROM \"books\"";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            List<Book> books = new ArrayList<>();
+            while (resultSet.next()) {
+                books.add(new Book(
+                        resultSet.getInt("id"),
+                        resultSet.getString("title"),
+                        resultSet.getString("author"),
+                        resultSet.getDate("releaseDate"),
+                        resultSet.getString("genre")
+                ));
+            }
+            return books;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return List.of();
+    }
+    public static List<Reviews> getReviews(){
+
+        try(Connection connection = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Connected to database!");
+
+            Statement statement = connection.createStatement();
+
+            String query = "select rating, title, author, name from \"reviews\" join \"books\" on reviews.book_id = books.id join \"users\" on reviews.user_id = users.id";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            List<Reviews> reviews = new ArrayList<>();
+            while (resultSet.next()) {
+                reviews.add(new Reviews(
+                        resultSet.getDouble("rating"),
+                        resultSet.getString("title"),
+                        resultSet.getString("author"),
+                        resultSet.getString("name")
+                ));
+            }
+            return reviews;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return List.of();
+    }
+    public static List<User> getFriendsByUserId(int userId) {
+        List<User> friends = new ArrayList<>();
+        String query = "SELECT u.id, u.username, u.password, u.name " +
+                "FROM friendships f " +
+                "JOIN users u ON (f.user1_id = u.id OR f.user2_id = u.id) " +
+                "WHERE (f.user1_id = ? OR f.user2_id = ?) AND u.id != ?";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+             PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setInt(1, userId);
+            pst.setInt(2, userId);
+            pst.setInt(3, userId);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                User friend = new User(rs.getString("username"), rs.getString("password"), rs.getString("name"));
+                friend.setId(rs.getInt("id")); // Set the id for the friend
+                friends.add(friend);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return friends;
+    }
 
     public static void insertUser(String username, String passwordUser, String name) {
-        String url = urlDeni;
-        String user = "postgres";
-        String password = passwordDeni;
 
         String query = "INSERT INTO users (username, password, name) VALUES (?, ?, ?)";
 
@@ -61,11 +148,7 @@ public class DBConnection {
             e.printStackTrace();
         }
     }
-
     public static boolean modifyName(String name, String newName) {
-        String url = urlDeni; // Database URL
-        String user = "postgres"; // Database user
-        String password = passwordDeni; // Database password
 
         // Correct SQL query for updating username
         String query = "UPDATE users SET name = ? WHERE name = ?";
@@ -97,12 +180,7 @@ public class DBConnection {
         }
         return false;
     }
-
-
     public static boolean modifyUsername(String username, String newUsername) {
-        String url = urlDeni; // Database URL
-        String user = "postgres"; // Database user
-        String password = passwordDeni; // Database password
 
         // Correct SQL query for updating username
         String query = "UPDATE users SET username = ? WHERE username = ?";
@@ -135,65 +213,4 @@ public class DBConnection {
         return false;
     }
 
-
-    public static List<Book> getBook() {
-        String url = urlDeni;
-        String user = "postgres";
-        String password = passwordDeni;
-
-        try(Connection connection = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Connected to database!");
-
-            Statement statement = connection.createStatement();
-
-            String query = "SELECT * FROM \"books\"";
-            ResultSet resultSet = statement.executeQuery(query);
-
-            List<Book> books = new ArrayList<>();
-            while (resultSet.next()) {
-                books.add(new Book(
-                        resultSet.getInt("id"),
-                        resultSet.getString("title"),
-                        resultSet.getString("author"),
-                        resultSet.getDate("releaseDate"),
-                        resultSet.getString("genre")
-                ));
-            }
-            return books;
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return List.of();
-    }
-
-    public static List<Reviews> getReviews(){
-        String url = urlDeni;
-        String user = "postgres";
-        String password = passwordDeni;
-
-        try(Connection connection = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Connected to database!");
-
-            Statement statement = connection.createStatement();
-
-            String query = "select rating, title, author, name from \"reviews\" join \"books\" on reviews.book_id = books.id join \"users\" on reviews.user_id = users.id";
-            ResultSet resultSet = statement.executeQuery(query);
-
-            List<Reviews> reviews = new ArrayList<>();
-            while (resultSet.next()) {
-                reviews.add(new Reviews(
-                        resultSet.getDouble("rating"),
-                        resultSet.getString("title"),
-                        resultSet.getString("author"),
-                        resultSet.getString("name")
-                ));
-            }
-            return reviews;
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return List.of();
-    }
 }

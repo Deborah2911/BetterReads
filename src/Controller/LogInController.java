@@ -1,5 +1,6 @@
 package Controller;
 
+import Database.DBConnection;
 import Database.User;
 import Models.LogInModel;
 import Models.ReleasesModel;
@@ -36,6 +37,10 @@ public class LogInController {
         @Override
         public void actionPerformed(ActionEvent e) {
             User account = logInModel.checkUsernamePassword(logInViewPage.getUsername(), logInViewPage.getPassword());
+            int userId = DBConnection.getUserIdByUsername(account.getUsername());
+            if(userId != -1){
+                account.setId(userId);
+            }
             if(account != null){
                 ReleasesModel releasesModel = new ReleasesModel();
                 ReleasesView releasesView = new ReleasesView(account);

@@ -94,10 +94,12 @@ public class ReleasesView extends JFrame {
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
         tabbedPane.addTab("Releases", scrollPaneReleases);
-
         frame.getContentPane().add(tabbedPane);
 
         tabbedPane.addTab("Account", new AccountPanel(account));
+        frame.getContentPane().add(tabbedPane);
+
+        tabbedPane.addTab("Friends", new FriendsPanel(account));
         frame.getContentPane().add(tabbedPane);
 
         frame.setVisible(true);
