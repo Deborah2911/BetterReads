@@ -21,9 +21,6 @@ public class ReleasesController {
     public class AccountListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            AccountView accountView=new AccountView();
-            AccountModel accountModel=new AccountModel();
-            AccountController accountController = new AccountController(accountModel, accountView);
         }
     }
 }
