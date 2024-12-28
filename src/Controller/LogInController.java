@@ -4,7 +4,6 @@ import Database.User;
 import Models.LogInModel;
 import Models.ReleasesModel;
 import Models.SignUpModel;
-import Views.AccountView;
 import Views.LogInView;
 import Views.ReleasesView;
 import Views.SignUpView;

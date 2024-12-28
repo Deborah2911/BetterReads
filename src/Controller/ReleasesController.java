@@ -1,8 +1,6 @@
 package Controller;
 
-import Models.AccountModel;
 import Models.ReleasesModel;
-import Views.AccountView;
 import Views.ReleasesView;
 
 import java.awt.event.ActionEvent;
