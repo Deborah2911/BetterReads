@@ -4,11 +4,14 @@ import java.sql.*;
 import java.util.*;
 
 public class DBConnection {
-
+    private static final String urlDeni = "jdbc:postgresql://localhost:5432/betterreads";
+    private static final String urlDebo = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String passwordDeni = "password";
+    private static final String passwordDebo = "Berti2001!";
     public static List<User> getUser() {
-        String url = "jdbc:postgresql://localhost:5432/postgres";
+        String url = urlDeni;
         String user = "postgres";
-        String password = "Berti2001!";
+        String password = passwordDeni;
 
         try(Connection connection = DriverManager.getConnection(url, user, password)) {
             System.out.println("Connected to database!");
@@ -21,7 +24,6 @@ public class DBConnection {
             List<User> users = new ArrayList<>();
             while (resultSet.next()) {
                 users.add(new User(
-                        resultSet.getInt("id"),
                         resultSet.getString("username"),
                         resultSet.getString("password"),
                         resultSet.getString("name")
@@ -37,9 +39,9 @@ public class DBConnection {
     }
 
     public static void insertUser(String username, String passwordUser, String name) {
-        String url = "jdbc:postgresql://localhost:5432/postgres";
+        String url = urlDeni;
         String user = "postgres";
-        String password = "Berti2001!";
+        String password = passwordDeni;
 
         String query = "INSERT INTO users (username, password, name) VALUES (?, ?, ?)";
 
@@ -61,9 +63,9 @@ public class DBConnection {
     }
 
     public static List<Book> getBook() {
-        String url = "jdbc:postgresql://localhost:5432/postgres";
+        String url = urlDeni;
         String user = "postgres";
-        String password = "Berti2001!";
+        String password = passwordDeni;
 
         try(Connection connection = DriverManager.getConnection(url, user, password)) {
             System.out.println("Connected to database!");
@@ -92,9 +94,9 @@ public class DBConnection {
     }
 
     public static List<Reviews> getReviews(){
-        String url = "jdbc:postgresql://localhost:5432/postgres";
+        String url = urlDeni;
         String user = "postgres";
-        String password = "Berti2001!";
+        String password = passwordDeni;
 
         try(Connection connection = DriverManager.getConnection(url, user, password)) {
             System.out.println("Connected to database!");

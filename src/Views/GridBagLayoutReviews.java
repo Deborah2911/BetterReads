@@ -102,4 +102,42 @@ public class GridBagLayoutReviews {
         panel.setPreferredSize(new Dimension(500, 150));
         return panel;
     }
+
+    public static JPanel createAccountPanel(JLabel username, JLabel password, JLabel fullName) {
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        // Common label settings
+        Font labelFont = new Font(Font.MONOSPACED, Font.BOLD, 18); // Larger font
+        Color labelColor = new Color(75, 37, 100); // Dark purple
+
+        // Username Label
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST; // Align to the left
+        gbc.weightx = 1.0; // Take up horizontal space
+        gbc.insets = new Insets(10, 10, 5, 10); // Padding
+        username.setFont(labelFont);
+        username.setForeground(labelColor);
+        panel.add(username, gbc);
+
+        // Password Label
+        gbc.gridy = 1; // Move to the next row
+        password.setFont(labelFont);
+        password.setForeground(labelColor);
+        panel.add(password, gbc);
+
+        // Full Name Label
+        gbc.gridy = 2; // Move to the next row
+        fullName.setFont(labelFont);
+        fullName.setForeground(labelColor);
+        panel.add(fullName, gbc);
+
+        // Set panel properties
+        panel.setBackground(new Color(235, 213, 243)); // Light purple background
+        panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15)); // Padding inside the panel
+        panel.setPreferredSize(new Dimension(500, 200)); // Adjust size as needed
+
+        return panel;
+    }
 }

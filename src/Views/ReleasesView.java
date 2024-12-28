@@ -3,6 +3,7 @@ package Views;
 import Database.Book;
 import Database.DBConnection;
 import Database.Reviews;
+import Database.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,27 +14,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReleasesView extends JFrame {
-
-    //private final JButton accountButton;
-
-    public ReleasesView(){
-
-        final JFrame frame = new JFrame("Reviews");
+    public ReleasesView(User account){
+        // Main panel
+        final JFrame frame = new JFrame("BetterReads");
 
         frame.setSize(800, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JTabbedPane tabbedPane = new JTabbedPane();
 
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        mainPanel.setBackground(Color.WHITE);
-//select rating, title, author, name from reviews join books on reviews.book_id = books.id join users on reviews.user_id = users.id
+        // Reviews panel
+        JPanel reviewsPanel = new JPanel();
+        reviewsPanel.setLayout(new BoxLayout(reviewsPanel, BoxLayout.Y_AXIS));
+        reviewsPanel.setBackground(Color.WHITE);
+
         List<Reviews> reviewsList = new ArrayList<>();
         reviewsList = DBConnection.getReviews();
 
-        for(Reviews review: reviewsList){
-
+        for(Reviews review: reviewsList) {
             JLabel titleAuthor = new JLabel(review.getTitle()+"   by  "+review.getAuthor());
             JLabel userFullName = new JLabel(review.getUserFullName()+" reviewed ");
             JLabel rating = new JLabel(review.getRating()+"/5 stars ");
@@ -44,43 +42,33 @@ public class ReleasesView extends JFrame {
 
             JPanel smallPanel = GridBagLayoutReviews.createPanel(userFullName, labelImage, titleAuthor, rating);
             smallPanel.setBackground(new Color(235, 213, 243));
-            mainPanel.add(smallPanel);
+            reviewsPanel.add(smallPanel);
 
-            mainPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+            reviewsPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         }
 
-        //accountButton=new JButton("My Account");
-
-        JScrollPane scrollPane = new JScrollPane(mainPanel);
+        JScrollPane scrollPane = new JScrollPane(reviewsPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
-        //add(accountButton);
         tabbedPane.addTab("Reviews", scrollPane);
 
 
-
-        JPanel mainPanelReleases = new JPanel();
-        mainPanelReleases.setLayout(new BoxLayout(mainPanelReleases, BoxLayout.Y_AXIS));
-        mainPanelReleases.setBackground(Color.WHITE);
+        // Releases panel
+        JPanel releasesPanel = new JPanel();
+        releasesPanel.setLayout(new BoxLayout(releasesPanel, BoxLayout.Y_AXIS));
+        releasesPanel.setBackground(Color.WHITE);
         List<Book> releasesList = new ArrayList<>();
         releasesList = DBConnection.getBook();
 
-        for(Book release: releasesList){
-
+        for(Book release: releasesList) {
             SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
-
             String bookReleaseDate = ft.format(release.getReleaseDate());
-
             String monthYear = bookReleaseDate.substring(0, 7);
-
             String currentDate = LocalDate.now().toString();
-
             String currentMonthYear = currentDate.substring(0, 7);
-
             if(currentMonthYear.equals(monthYear)) {
-
                 SimpleDateFormat ft2 = new SimpleDateFormat("dd-MM-yyyy");
 
                 String bookReleaseDate2 = ft2.format(release.getReleaseDate());
@@ -94,16 +82,13 @@ public class ReleasesView extends JFrame {
 
                 JPanel smallPanel = GridBagLayoutReviews.createReleasesPanel(releaseDate,labelImage, titleAuthor);
                 smallPanel.setBackground(new Color(255, 227, 198));
-                mainPanelReleases.add(smallPanel);
+                releasesPanel.add(smallPanel);
 
-                mainPanelReleases.add(Box.createRigidArea(new Dimension(0, 5)));
+                releasesPanel.add(Box.createRigidArea(new Dimension(0, 5)));
             }
+        }
 
-            }
-
-        //accountButton=new JButton("My Account");
-
-        JScrollPane scrollPaneReleases = new JScrollPane(mainPanelReleases);
+        JScrollPane scrollPaneReleases = new JScrollPane(releasesPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
@@ -111,12 +96,104 @@ public class ReleasesView extends JFrame {
         tabbedPane.addTab("Releases", scrollPaneReleases);
 
         frame.getContentPane().add(tabbedPane);
+
+        // Account panel
+        JPanel accountPanel = new JPanel();
+        accountPanel.setLayout(new BoxLayout(accountPanel, BoxLayout.Y_AXIS));
+        accountPanel.setBackground(Color.WHITE);
+
+        JLabel fullNameLabel = new JLabel("Full name: " + account.getName());
+        JLabel usernameLabel = new JLabel("Username: " + account.getUsername());
+
+// Password field
+        JPasswordField passwordField = new JPasswordField(account.getPassword());
+        passwordField.setEchoChar('•'); // Hide characters with a bullet
+        passwordField.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
+        passwordField.setForeground(new Color(75, 37, 100));
+        passwordField.setEditable(false); // Make it non-editable
+
+// Show/Hide password button
+        JButton togglePasswordButton = new JButton("Show");
+        togglePasswordButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
+        togglePasswordButton.addActionListener(e -> {
+            if (passwordField.getEchoChar() == '•') {
+                passwordField.setEchoChar((char) 0); // Show password
+                togglePasswordButton.setText("Hide");
+            } else {
+                passwordField.setEchoChar('•'); // Hide password
+                togglePasswordButton.setText("Show");
+            }
+        });
+
+// Modify Username Button
+        JButton modifyUsernameButton = new JButton("Modify Username");
+        modifyUsernameButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
+        modifyUsernameButton.addActionListener(e -> {
+            JTextField usernameField = new JTextField(account.getUsername(), 20);
+            int result = JOptionPane.showConfirmDialog(null, usernameField,
+                    "Modify Username", JOptionPane.OK_CANCEL_OPTION);
+            if (result == JOptionPane.OK_OPTION) {
+                account.setUsername(usernameField.getText());
+                usernameLabel.setText("Username: " + account.getUsername());
+            }
+        });
+
+// Modify Full Name Button
+        JButton modifyFullNameButton = new JButton("Modify Full Name");
+        modifyFullNameButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
+        modifyFullNameButton.addActionListener(e -> {
+            JTextField fullNameField = new JTextField(account.getName(), 20);
+            int result = JOptionPane.showConfirmDialog(null, fullNameField,
+                    "Modify Full Name", JOptionPane.OK_CANCEL_OPTION);
+            if (result == JOptionPane.OK_OPTION) {
+                account.setName(fullNameField.getText());
+                fullNameLabel.setText("Full name: " + account.getName());
+            }
+        });
+
+// Panel for password field and button
+        JPanel passwordPanel = new JPanel(new BorderLayout());
+        passwordPanel.setBackground(new Color(235, 213, 243));
+        passwordPanel.add(passwordField, BorderLayout.CENTER);
+        passwordPanel.add(togglePasswordButton, BorderLayout.EAST);
+
+// Panel for username and modify button
+        JPanel usernamePanel = new JPanel(new BorderLayout());
+        usernamePanel.setBackground(new Color(235, 213, 243));
+        usernamePanel.add(usernameLabel, BorderLayout.CENTER);
+        usernamePanel.add(modifyUsernameButton, BorderLayout.EAST);
+
+// Panel for full name and modify button
+        JPanel fullNamePanel = new JPanel(new BorderLayout());
+        fullNamePanel.setBackground(new Color(235, 213, 243));
+        fullNamePanel.add(fullNameLabel, BorderLayout.CENTER);
+        fullNamePanel.add(modifyFullNameButton, BorderLayout.EAST);
+
+// Add panels to the small panel
+        JPanel smallPanel = new JPanel();
+        smallPanel.setLayout(new BoxLayout(smallPanel, BoxLayout.Y_AXIS));
+        smallPanel.setBackground(new Color(235, 213, 243));
+        smallPanel.add(usernamePanel);
+        smallPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        smallPanel.add(passwordPanel);
+        smallPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        smallPanel.add(fullNamePanel);
+
+// Add small panel to the account panel
+        accountPanel.add(smallPanel);
+        accountPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+
+// Scroll pane setup
+        JScrollPane scrollPaneAccount = new JScrollPane(accountPanel);
+        scrollPaneAccount.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPaneAccount.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPaneAccount.getVerticalScrollBar().setUnitIncrement(16);
+
+// Add tab
+        tabbedPane.addTab("Account", scrollPaneAccount);
+        frame.getContentPane().add(tabbedPane);
+
         frame.setVisible(true);
-
     }
-
-//    public void setAccountButtonActionListener(ActionListener actionListener){
-//        accountButton.addActionListener(actionListener);
-//    }
 
 }

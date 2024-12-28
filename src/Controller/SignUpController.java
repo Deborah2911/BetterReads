@@ -1,6 +1,7 @@
 package Controller;
 
 import Database.DBConnection;
+import Database.User;
 import Models.ReleasesModel;
 import Models.SignUpModel;
 import Views.ReleasesView;
@@ -28,8 +29,9 @@ public class SignUpController {
                     if(signUpModel.checkExistingPassword(signUpView.getPassword1()) || signUpModel.checkExistingPassword(signUpView.getPassword2())){
                         if(signUpModel.checkSamePassword(signUpView.getPassword1(), signUpView.getPassword2())) {
                             DBConnection.insertUser(signUpView.getUsername(), signUpView.getPassword1(), signUpView.getUsername());
+                            User account = new User(signUpView.getUsername(), signUpView.getPassword1(), signUpView.getFullName());
                             ReleasesModel releasesModel = new ReleasesModel();
-                            ReleasesView releasesView = new ReleasesView();
+                            ReleasesView releasesView = new ReleasesView(account);
                             ReleasesController releasesController = new ReleasesController(releasesModel, releasesView);
                             releasesView.dispose();
                         } else{

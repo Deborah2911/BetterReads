@@ -1,5 +1,6 @@
 package Controller;
 
+import Database.User;
 import Models.LogInModel;
 import Models.ReleasesModel;
 import Models.SignUpModel;
@@ -35,13 +36,11 @@ public class LogInController {
     private class LogInListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
-            if(logInModel.checkUsernamePassword(logInViewPage.getUsername(), logInViewPage.getPassword())){
+            User account = logInModel.checkUsernamePassword(logInViewPage.getUsername(), logInViewPage.getPassword());
+            if(account != null){
                 ReleasesModel releasesModel = new ReleasesModel();
-                ReleasesView releasesView = new ReleasesView();
+                ReleasesView releasesView = new ReleasesView(account);
                 ReleasesController releasesController = new ReleasesController(releasesModel, releasesView);
-                AccountView accountView = new AccountView();
-                accountView.setAccountDetails(logInViewPage.getName(), logInViewPage.getUsername(), logInViewPage.getPassword());
                 logInViewPage.dispose();
             }
             else{

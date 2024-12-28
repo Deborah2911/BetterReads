@@ -9,9 +9,9 @@ public class AccountView extends JFrame {
     private final JLabel usernameLabel = new JLabel("Username:");
     private final JLabel passwordLabel =  new JLabel("Password:");
 
-    private JLabel name;
-    private JLabel pass;
-    private JLabel user;
+    private JLabel name = new JLabel("Name");
+    private JLabel pass = new JLabel("Password");
+    private JLabel user = new JLabel("Username");
 
     public AccountView() {
         name = new JLabel();
@@ -37,5 +37,17 @@ public class AccountView extends JFrame {
         name.setText(fullName);
         user.setText(username);
         pass.setText(password);
+    }
+
+    public String getName() {
+        return name.getText();
+    }
+
+    public String getPassword() {
+        return pass.getText();
+    }
+
+    public String getUsername() {
+        return user.getText();
     }
 }
