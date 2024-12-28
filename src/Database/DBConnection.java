@@ -62,6 +62,80 @@ public class DBConnection {
         }
     }
 
+    public static boolean modifyName(String name, String newName) {
+        String url = urlDeni; // Database URL
+        String user = "postgres"; // Database user
+        String password = passwordDeni; // Database password
+
+        // Correct SQL query for updating username
+        String query = "UPDATE users SET name = ? WHERE name = ?";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Connected to database!");
+
+            // Use PreparedStatement to prevent SQL injection
+            PreparedStatement pst = connection.prepareStatement(query);
+
+            // Set the parameters for the query
+            pst.setString(1, newName); // New username
+            pst.setString(2, name);    // Current username
+
+            // Execute the update
+            int rowsAffected = pst.executeUpdate();
+
+            // Provide feedback on the update
+            if (rowsAffected > 0) {
+                System.out.println("Name updated successfully!");
+                return true;
+            } else {
+                System.out.println("No user found with the provided name.");
+                return false;
+            }
+        } catch (Exception e) {
+            // Print the stack trace for debugging purposes
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
+    public static boolean modifyUsername(String username, String newUsername) {
+        String url = urlDeni; // Database URL
+        String user = "postgres"; // Database user
+        String password = passwordDeni; // Database password
+
+        // Correct SQL query for updating username
+        String query = "UPDATE users SET username = ? WHERE username = ?";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Connected to database!");
+
+            // Use PreparedStatement to prevent SQL injection
+            PreparedStatement pst = connection.prepareStatement(query);
+
+            // Set the parameters for the query
+            pst.setString(1, newUsername); // New username
+            pst.setString(2, username);    // Current username
+
+            // Execute the update
+            int rowsAffected = pst.executeUpdate();
+
+            // Provide feedback on the update
+            if (rowsAffected > 0) {
+                System.out.println("Username updated successfully!");
+                return true;
+            } else {
+                System.out.println("No user found with the provided username.");
+                return false;
+            }
+        } catch (Exception e) {
+            // Print the stack trace for debugging purposes
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
     public static List<Book> getBook() {
         String url = urlDeni;
         String user = "postgres";

@@ -104,15 +104,14 @@ public class ReleasesView extends JFrame {
 
         JLabel fullNameLabel = new JLabel("Full name: " + account.getName());
         JLabel usernameLabel = new JLabel("Username: " + account.getUsername());
+        JLabel passwordLabel = new JLabel("Password: ");
 
-// Password field
         JPasswordField passwordField = new JPasswordField(account.getPassword());
         passwordField.setEchoChar('•'); // Hide characters with a bullet
         passwordField.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
         passwordField.setForeground(new Color(75, 37, 100));
         passwordField.setEditable(false); // Make it non-editable
 
-// Show/Hide password button
         JButton togglePasswordButton = new JButton("Show");
         togglePasswordButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
         togglePasswordButton.addActionListener(e -> {
@@ -125,7 +124,6 @@ public class ReleasesView extends JFrame {
             }
         });
 
-// Modify Username Button
         JButton modifyUsernameButton = new JButton("Modify Username");
         modifyUsernameButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
         modifyUsernameButton.addActionListener(e -> {
@@ -133,12 +131,17 @@ public class ReleasesView extends JFrame {
             int result = JOptionPane.showConfirmDialog(null, usernameField,
                     "Modify Username", JOptionPane.OK_CANCEL_OPTION);
             if (result == JOptionPane.OK_OPTION) {
-                account.setUsername(usernameField.getText());
-                usernameLabel.setText("Username: " + account.getUsername());
+                if(DBConnection.modifyUsername(account.getUsername(), usernameField.getText())) {
+                    account.setUsername(usernameField.getText());
+                    usernameLabel.setText("Username: " + account.getUsername());
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Error while modifying username. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
-// Modify Full Name Button
+
         JButton modifyFullNameButton = new JButton("Modify Full Name");
         modifyFullNameButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
         modifyFullNameButton.addActionListener(e -> {
@@ -146,30 +149,32 @@ public class ReleasesView extends JFrame {
             int result = JOptionPane.showConfirmDialog(null, fullNameField,
                     "Modify Full Name", JOptionPane.OK_CANCEL_OPTION);
             if (result == JOptionPane.OK_OPTION) {
-                account.setName(fullNameField.getText());
-                fullNameLabel.setText("Full name: " + account.getName());
+                if(DBConnection.modifyName(account.getName(), fullNameField.getText())) {
+                    account.setName(fullNameField.getText());
+                    fullNameLabel.setText("Full name: " + account.getName());
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Error while modifying name. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
-// Panel for password field and button
         JPanel passwordPanel = new JPanel(new BorderLayout());
         passwordPanel.setBackground(new Color(235, 213, 243));
+        passwordPanel.add(passwordLabel, BorderLayout.WEST);
         passwordPanel.add(passwordField, BorderLayout.CENTER);
         passwordPanel.add(togglePasswordButton, BorderLayout.EAST);
 
-// Panel for username and modify button
         JPanel usernamePanel = new JPanel(new BorderLayout());
         usernamePanel.setBackground(new Color(235, 213, 243));
         usernamePanel.add(usernameLabel, BorderLayout.CENTER);
         usernamePanel.add(modifyUsernameButton, BorderLayout.EAST);
 
-// Panel for full name and modify button
         JPanel fullNamePanel = new JPanel(new BorderLayout());
         fullNamePanel.setBackground(new Color(235, 213, 243));
         fullNamePanel.add(fullNameLabel, BorderLayout.CENTER);
         fullNamePanel.add(modifyFullNameButton, BorderLayout.EAST);
 
-// Add panels to the small panel
         JPanel smallPanel = new JPanel();
         smallPanel.setLayout(new BoxLayout(smallPanel, BoxLayout.Y_AXIS));
         smallPanel.setBackground(new Color(235, 213, 243));
@@ -179,18 +184,15 @@ public class ReleasesView extends JFrame {
         smallPanel.add(Box.createRigidArea(new Dimension(0, 5)));
         smallPanel.add(fullNamePanel);
 
-// Add small panel to the account panel
         accountPanel.add(smallPanel);
         accountPanel.add(Box.createRigidArea(new Dimension(0, 5)));
 
-// Scroll pane setup
-        JScrollPane scrollPaneAccount = new JScrollPane(accountPanel);
-        scrollPaneAccount.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPaneAccount.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPaneAccount.getVerticalScrollBar().setUnitIncrement(16);
+//        JScrollPane scrollPaneAccount = new JScrollPane(accountPanel);
+//        scrollPaneAccount.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+//        scrollPaneAccount.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+//        scrollPaneAccount.getVerticalScrollBar().setUnitIncrement(16);
 
-// Add tab
-        tabbedPane.addTab("Account", scrollPaneAccount);
+        tabbedPane.addTab("Account", accountPanel);
         frame.getContentPane().add(tabbedPane);
 
         frame.setVisible(true);
