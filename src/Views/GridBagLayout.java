@@ -60,7 +60,6 @@ public class GridBagLayout {
         panel.setPreferredSize(new Dimension(500, 150));
         return panel;
     }
-
     public static JPanel createReleasesPanel(JLabel l1, JLabel l2, JLabel l3) {
         JPanel panel = new JPanel(new java.awt.GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -100,35 +99,4 @@ public class GridBagLayout {
         panel.setPreferredSize(new Dimension(500, 150));
         return panel;
     }
-
-    public static JPanel createFriendPanel(JLabel fullNameLabel, JLabel usernameLabel) {
-        JPanel panel = new JPanel(new java.awt.GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-
-        // Friend's full name
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.NORTHWEST;
-        gbc.weighty = 0.0;
-        gbc.weightx = 1.0;
-        gbc.insets = new Insets(10, 5, 5, 0);
-        fullNameLabel.setFont(new Font("Arial", Font.BOLD, 18)); // Larger font for the full name
-        fullNameLabel.setForeground(new Color(75, 37, 100));
-        panel.add(fullNameLabel, gbc);
-
-        // Friend's username
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.anchor = GridBagConstraints.NORTHWEST;
-        gbc.weighty = 0.0;
-        gbc.weightx = 1.0;
-        gbc.insets = new Insets(5, 5, 10, 0);
-        usernameLabel.setFont(new Font("Arial", Font.PLAIN, 14)); // Smaller font for the username
-        usernameLabel.setForeground(new Color(50, 50, 50)); // Darker color for the username
-        panel.add(usernameLabel, gbc);
-
-        panel.setPreferredSize(new Dimension(300, 100)); // Adjust the size as needed
-        return panel;
-    }
-
 }

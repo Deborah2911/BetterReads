@@ -2,6 +2,7 @@ package Views;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class FriendsView extends JPanel {
     private final JPanel friendsPanel;
@@ -39,8 +40,8 @@ public class FriendsView extends JPanel {
         add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    public JButton getAddFriendButton() {
-        return addFriendButton;
+    public void setAddFriendButtonActionListener(ActionListener actionListener) {
+        addFriendButton.addActionListener(actionListener);
     }
 
     public void addFriend(String name, String username) {
@@ -57,9 +58,25 @@ public class FriendsView extends JPanel {
     }
 
     private JPanel createFriendPanel(JLabel nameLabel, JLabel usernameLabel) {
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(nameLabel, BorderLayout.WEST);
-        panel.add(usernameLabel, BorderLayout.CENTER);
+        JPanel panel = new JPanel(new java.awt.GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        // Set up GridBagLayout for the name label
+        gbc.gridx = 0;  // Column 0
+        gbc.gridy = 0;  // Row 0
+        gbc.anchor = GridBagConstraints.WEST;  // Align to the left
+        nameLabel.setFont(new Font("Arial", Font.PLAIN, 20));  // Larger font for name
+        panel.add(nameLabel, gbc);
+
+        // Set up GridBagLayout for the username label
+        gbc.gridx = 0;  // Column 0
+        gbc.gridy = 1;  // Row 1
+        gbc.anchor = GridBagConstraints.WEST;  // Align to the left
+        usernameLabel.setFont(new Font("Arial", Font.PLAIN, 12));  // Smaller font for username
+        panel.add(usernameLabel, gbc);
+
         return panel;
     }
+
+
 }

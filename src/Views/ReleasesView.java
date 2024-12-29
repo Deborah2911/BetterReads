@@ -2,10 +2,12 @@ package Views;
 
 import Controller.AccountController;
 import Controller.FriendsController;
+import Controller.SearchController;
 import Database.Book;
 import Database.DBConnection;
 import Database.Reviews;
 import Database.User;
+import Models.SearchModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -105,6 +107,12 @@ public class ReleasesView extends JFrame {
         FriendsView friendsView = new FriendsView();
         FriendsController friendsController = new FriendsController(account, friendsView);
         tabbedPane.addTab("Friends",friendsView);
+        frame.getContentPane().add(tabbedPane);
+
+        SearchView searchView = new SearchView();
+        SearchModel searchModel = new SearchModel();
+        SearchController searchController = new SearchController(searchModel, searchView);
+        tabbedPane.addTab("Search", searchView);
         frame.getContentPane().add(tabbedPane);
 
         frame.setVisible(true);
