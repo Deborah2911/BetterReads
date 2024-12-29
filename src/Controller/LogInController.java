@@ -30,6 +30,7 @@ public class LogInController {
             SignUpModel signUpModel = new SignUpModel();
             SignUpView signUpView = new SignUpView();
             SignUpController signUpController = new SignUpController(signUpModel, signUpView);
+            logInView.dispose();
         }
     }
 

@@ -33,7 +33,8 @@ public class SignUpController {
                             ReleasesModel releasesModel = new ReleasesModel();
                             ReleasesView releasesView = new ReleasesView(account);
                             ReleasesController releasesController = new ReleasesController(releasesModel, releasesView);
-                            releasesView.dispose();
+                            signUpView.dispose();
+                            //releasesView.dispose();
                         } else{
                             signUpView.setMessagePasswordVisible();
                         }

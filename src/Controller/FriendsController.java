@@ -43,6 +43,7 @@ public class FriendsController {
     }
 
     private void populateFriendsList() {
+        view.clearFriendsList();
         model.getFriendsList().forEach(friend -> {
             String name = friend.getName();
             String username = friend.getUsername();

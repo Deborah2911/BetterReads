@@ -4,8 +4,12 @@ import Database.Book;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.util.List;
+
+import static java.awt.GridBagConstraints.CENTER;
+import static java.awt.GridBagConstraints.FIRST_LINE_START;
 
 public class SearchView extends JPanel {
     private final JTextField searchField;
@@ -80,14 +84,31 @@ public class SearchView extends JPanel {
     }
 
     private JPanel createBookPanel(Book book) {
-        JLabel titleLabel = new JLabel("Title: " + book.getTitle());
-        JLabel authorLabel = new JLabel("Author: " + book.getAuthor());
+        JLabel titleLabel = new JLabel("Title:      " + book.getTitle());
+        JLabel authorLabel = new JLabel("Author:    " + book.getAuthor());
 
-        JPanel panel = new JPanel(new GridLayout(2, 1));
+        GridBagConstraints gbc = new GridBagConstraints();
+        JPanel panel = new JPanel(new GridBagLayout());
         panel.setBackground(new Color(240, 240, 255));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        panel.add(titleLabel);
-        panel.add(authorLabel);
+
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.anchor = CENTER;
+        gbc.weighty = 0.0;
+        gbc.weightx = 1.0;
+        gbc.gridwidth = 2;
+        panel.add(titleLabel, gbc);
+
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.anchor = CENTER;
+        gbc.weighty = 0.0;
+        gbc.weightx = 1.0;
+        gbc.gridwidth = 2;
+        panel.add(authorLabel,gbc);
 
         return panel;
     }

@@ -30,19 +30,23 @@ public class LogInView extends JFrame {
 
         setTitle("BetterReads");
         setLayout(new GridLayout(8, 1));
-        setLocationRelativeTo(null);
+        //setLocationRelativeTo(null);
         setSize(600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         message.setForeground(Color.RED);
         message.setVisible(false);
 
+        setBackground(new Color(250, 200, 200));
+        title.setHorizontalAlignment(SwingConstants.CENTER);
         add(title);
         add(usernameLabel);
         add(usernameField);
         add(passwordLabel);
         add(passwordField);
+        logInButton.setSize(new Dimension(100, 40));
         add(logInButton);
+        signUpButton.setSize(new Dimension(100, 40));
         add(signUpButton);
         add(message);
     }

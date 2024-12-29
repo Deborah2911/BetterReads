@@ -3,6 +3,7 @@ package Views;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class FriendsView extends JPanel {
     private final JPanel friendsPanel;
@@ -45,11 +46,23 @@ public class FriendsView extends JPanel {
     }
 
     public void addFriend(String name, String username) {
+
         JLabel friendName = new JLabel(name);
         JLabel friendUsername = new JLabel(username);
 
         JPanel friendPanel = createFriendPanel(friendName, friendUsername);
-        friendPanel.setBackground(new Color(255, 227, 198));
+        Random random = new Random ();
+
+        // to create lighter colors:
+        // take a random integer between 0 & 128 (rather than between 0 and 255)
+        // and then add 127 to make the color lighter
+
+        int red = (random.nextInt (256) + 255)/2;
+        int green = (random.nextInt (256) + 255)/2;
+        int blue = (random.nextInt (256) + 255)/2;
+
+        Color c = new Color(red, green, blue, 255);
+        friendPanel.setBackground(c);
 
         friendsPanel.add(friendPanel);
         friendsPanel.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -62,21 +75,27 @@ public class FriendsView extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
 
         // Set up GridBagLayout for the name label
-        gbc.gridx = 0;  // Column 0
-        gbc.gridy = 0;  // Row 0
-        gbc.anchor = GridBagConstraints.WEST;  // Align to the left
-        nameLabel.setFont(new Font("Arial", Font.PLAIN, 20));  // Larger font for name
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 1.0;
+        nameLabel.setFont(new Font("Arial", Font.PLAIN, 20));
         panel.add(nameLabel, gbc);
 
         // Set up GridBagLayout for the username label
-        gbc.gridx = 0;  // Column 0
-        gbc.gridy = 1;  // Row 1
-        gbc.anchor = GridBagConstraints.WEST;  // Align to the left
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 1.0;
         usernameLabel.setFont(new Font("Arial", Font.PLAIN, 12));  // Smaller font for username
         panel.add(usernameLabel, gbc);
 
         return panel;
     }
 
-
+    public void clearFriendsList() {
+        friendsPanel.removeAll();
+        friendsPanel.revalidate();
+        friendsPanel.repaint();
+    }
 }

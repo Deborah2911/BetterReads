@@ -13,6 +13,8 @@ public class AccountView extends JPanel {
     private JButton modifyFullNameButton;
     private JButton logOutButton;
 
+    private final Color backgroundColor = new Color(230, 255, 255);
+
     public AccountView() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.WHITE);
@@ -28,52 +30,54 @@ public class AccountView extends JPanel {
         passwordField.setEditable(false);
 
         togglePasswordButton = new JButton("Show");
-        togglePasswordButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
+        togglePasswordButton.setBackground(new Color(235, 213, 243));
+        togglePasswordButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
         modifyUsernameButton = new JButton("Modify Username");
-        modifyUsernameButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
+        modifyUsernameButton.setBackground(new Color(235, 213, 243));
+        modifyUsernameButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
         modifyFullNameButton = new JButton("Modify Full Name");
-        modifyFullNameButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
+        modifyFullNameButton.setBackground(new Color(235, 213, 243));
+        modifyFullNameButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
         logOutButton = new JButton("Log Out");
-        logOutButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
+        logOutButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
 
-        JPanel passwordPanel = createSubPanel(passwordLabel, passwordField, togglePasswordButton);
-        JPanel usernamePanel = createSubPanel(usernameLabel, null, modifyUsernameButton);
-        JPanel fullNamePanel = createSubPanel(fullNameLabel, null, modifyFullNameButton);
+        JPanel passwordPanel;
+        JPanel usernamePanel;
+        JPanel fullNamePanel;
+
+        usernamePanel = GridBagLayout.createAccountPanel(usernameLabel, modifyUsernameButton, null);
+        passwordPanel = GridBagLayout.createAccountPanel(passwordLabel, togglePasswordButton, passwordField);
+        fullNamePanel = GridBagLayout.createAccountPanel(fullNameLabel, modifyFullNameButton, null);
 
         JPanel smallPanel = new JPanel();
         smallPanel.setLayout(new BoxLayout(smallPanel, BoxLayout.Y_AXIS));
-        smallPanel.setBackground(new Color(235, 213, 243));
+        smallPanel.setBackground(Color.WHITE);
+        usernamePanel.setBackground(backgroundColor);
         smallPanel.add(usernamePanel);
-        smallPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        smallPanel.add(Box.createRigidArea(new Dimension(0, 3)));
+        passwordPanel.setBackground(backgroundColor);
         smallPanel.add(passwordPanel);
-        smallPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+        smallPanel.add(Box.createRigidArea(new Dimension(0, 3)));
+        fullNamePanel.setBackground(backgroundColor);
         smallPanel.add(fullNamePanel);
 
+        this.setBackground(backgroundColor);
         this.add(smallPanel);
-        this.add(Box.createRigidArea(new Dimension(0, 5)));
+        this.add(Box.createRigidArea(new Dimension(0, 3)));
+        logOutButton.setPreferredSize(new Dimension(80, 60));
+        logOutButton.setBackground(new Color(235, 113, 143));
         this.add(logOutButton);
     }
 
-    private JPanel createSubPanel(JLabel label, JComponent centerComponent, JButton button) {
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.setBackground(new Color(235, 213, 243));
-        panel.add(label, BorderLayout.WEST);
-        if (centerComponent != null) {
-            panel.add(centerComponent, BorderLayout.CENTER);
-        }
-        panel.add(button, BorderLayout.EAST);
-        return panel;
-    }
-
     public void setFullNameLabel(String text) {
-        fullNameLabel.setText("Full name: " + text);
+        fullNameLabel.setText("Full name:       " + text);
     }
 
     public void setUsernameLabel(String text) {
-        usernameLabel.setText("Username: " + text);
+        usernameLabel.setText("Username:       " + text);
     }
 
     public void setPasswordField(String text) {
