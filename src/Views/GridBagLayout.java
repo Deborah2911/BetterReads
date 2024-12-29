@@ -3,13 +3,11 @@ package Views;
 import javax.swing.*;
 import java.awt.*;
 
-import static java.awt.Font.BOLD;
-import static java.awt.Font.MONOSPACED;
 import static java.awt.GridBagConstraints.*;
 
-public class GridBagLayoutReviews {
-    public static JPanel createPanel(JLabel l1, JLabel l2, JLabel l3, JLabel l4) {
-        JPanel panel = new JPanel(new GridBagLayout());
+public class GridBagLayout {
+    public static JPanel createPanelReviews(JLabel l1, JLabel l2, JLabel l3, JLabel l4) {
+        JPanel panel = new JPanel(new java.awt.GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
         //userFullName
@@ -64,7 +62,7 @@ public class GridBagLayoutReviews {
     }
 
     public static JPanel createReleasesPanel(JLabel l1, JLabel l2, JLabel l3) {
-        JPanel panel = new JPanel(new GridBagLayout());
+        JPanel panel = new JPanel(new java.awt.GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
         //releaseDate
@@ -104,7 +102,7 @@ public class GridBagLayoutReviews {
     }
 
     public static JPanel createFriendPanel(JLabel fullNameLabel, JLabel usernameLabel) {
-        JPanel panel = new JPanel(new GridBagLayout());
+        JPanel panel = new JPanel(new java.awt.GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
         // Friend's full name

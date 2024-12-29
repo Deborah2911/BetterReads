@@ -127,7 +127,26 @@ public class DBConnection {
         }
         return friends;
     }
+    public static boolean addFriendship(int userId, String friendUsername) {
+        // Fetch the friend's ID from the database based on their username
+        int friendId = getUserIdByUsername(friendUsername);
+        if (friendId == -1) {
+            return false; // Friend's username not found
+        }
 
+        // Insert friendship relationship into the database
+        String query = "INSERT INTO friendships (user1_id, user2_id) VALUES (?, ?)";
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+             PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setInt(1, userId);
+            pst.setInt(2, friendId);
+            pst.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     public static void insertUser(String username, String passwordUser, String name) {
 
         String query = "INSERT INTO users (username, password, name) VALUES (?, ?, ?)";

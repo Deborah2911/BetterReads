@@ -14,8 +14,8 @@ public class AccountView extends JPanel {
     private JButton logOutButton;
 
     public AccountView() {
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.setBackground(Color.WHITE);
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setBackground(Color.WHITE);
 
         fullNameLabel = new JLabel();
         usernameLabel = new JLabel();

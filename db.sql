@@ -949,3 +949,9 @@ SET releaseDate = MAKE_DATE(
         FLOOR(RANDOM() * 12 + 1)::INT,                 -- Random month (1-12)
         FLOOR(RANDOM() * 28 + 1)::INT                  -- Random day (1-28, safe for all months)
                   );
+
+-- Made sure the friendship id is SERIAL, and set it to the current number of friendships
+CREATE SEQUENCE friendships_id_seq;
+ALTER TABLE friendships ALTER COLUMN id SET DEFAULT nextval('friendships_id_seq');
+ALTER SEQUENCE friendships_id_seq OWNED BY friendships.id;
+SELECT setval('friendships_id_seq', 150, true);

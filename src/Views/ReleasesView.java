@@ -1,6 +1,7 @@
 package Views;
 
 import Controller.AccountController;
+import Controller.FriendsController;
 import Database.Book;
 import Database.DBConnection;
 import Database.Reviews;
@@ -8,7 +9,6 @@ import Database.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class ReleasesView extends JFrame {
             Image scaledImage = image.getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
             JLabel labelImage = new JLabel(new ImageIcon(scaledImage));
 
-            JPanel smallPanel = GridBagLayoutReviews.createPanel(userFullName, labelImage, titleAuthor, rating);
+            JPanel smallPanel = GridBagLayout.createPanelReviews(userFullName, labelImage, titleAuthor, rating);
             smallPanel.setBackground(new Color(235, 213, 243));
             reviewsPanel.add(smallPanel);
 
@@ -81,7 +81,7 @@ public class ReleasesView extends JFrame {
                 Image scaledImage = image.getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
                 JLabel labelImage = new JLabel(new ImageIcon(scaledImage));
 
-                JPanel smallPanel = GridBagLayoutReviews.createReleasesPanel(releaseDate,labelImage, titleAuthor);
+                JPanel smallPanel = GridBagLayout.createReleasesPanel(releaseDate,labelImage, titleAuthor);
                 smallPanel.setBackground(new Color(255, 227, 198));
                 releasesPanel.add(smallPanel);
 
@@ -102,7 +102,9 @@ public class ReleasesView extends JFrame {
         tabbedPane.addTab("Account", accountView);
         frame.getContentPane().add(tabbedPane);
 
-        tabbedPane.addTab("Friends", new FriendsPanel(account));
+        FriendsView friendsView = new FriendsView();
+        FriendsController friendsController = new FriendsController(account, friendsView);
+        tabbedPane.addTab("Friends",friendsView);
         frame.getContentPane().add(tabbedPane);
 
         frame.setVisible(true);
