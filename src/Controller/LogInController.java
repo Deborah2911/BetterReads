@@ -14,14 +14,14 @@ import java.awt.event.ActionListener;
 
 public class LogInController {
     private LogInModel logInModel;
-    private LogInView logInViewPage;
+    private LogInView logInView;
 
     public LogInController(LogInModel logInModel1, LogInView logInViewPage1){
         this.logInModel=logInModel1;
-        this.logInViewPage = logInViewPage1;
-        logInViewPage.setSignUpButtonActionListener(new SignUpListener());
-        logInViewPage.setLogInButtonActionListener(new LogInListener());
-        logInViewPage.setVisible(true);
+        this.logInView = logInViewPage1;
+        logInView.setSignUpButtonActionListener(new SignUpListener());
+        logInView.setLogInButtonActionListener(new LogInListener());
+        logInView.setVisible(true);
     }
 
     private class SignUpListener implements ActionListener {
@@ -36,7 +36,7 @@ public class LogInController {
     private class LogInListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            User account = logInModel.checkUsernamePassword(logInViewPage.getUsername(), logInViewPage.getPassword());
+            User account = logInModel.checkUsernamePassword(logInView.getUsername(), logInView.getPassword());
             int userId = DBConnection.getUserIdByUsername(account.getUsername());
             if(userId != -1){
                 account.setId(userId);
@@ -45,10 +45,10 @@ public class LogInController {
                 ReleasesModel releasesModel = new ReleasesModel();
                 ReleasesView releasesView = new ReleasesView(account);
                 ReleasesController releasesController = new ReleasesController(releasesModel, releasesView);
-                logInViewPage.dispose();
+                logInView.dispose();
             }
             else{
-                logInViewPage.setMessageVisible();
+                logInView.setMessageVisible();
             }
         }
     }

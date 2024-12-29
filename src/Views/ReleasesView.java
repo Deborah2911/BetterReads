@@ -1,5 +1,6 @@
 package Views;
 
+import Controller.AccountController;
 import Database.Book;
 import Database.DBConnection;
 import Database.Reviews;
@@ -96,7 +97,9 @@ public class ReleasesView extends JFrame {
         tabbedPane.addTab("Releases", scrollPaneReleases);
         frame.getContentPane().add(tabbedPane);
 
-        tabbedPane.addTab("Account", new AccountPanel(account));
+        AccountView accountView = new AccountView();
+        AccountController accountController = new AccountController(account, accountView);
+        tabbedPane.addTab("Account", accountView);
         frame.getContentPane().add(tabbedPane);
 
         tabbedPane.addTab("Friends", new FriendsPanel(account));
