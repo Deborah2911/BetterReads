@@ -112,7 +112,7 @@ public class GridBagLayout {
         gbc.weightx = 1.0;
         gbc.insets = new Insets(0, 60, 0, 0);
         gbc.gridwidth = 2;
-        l1.setForeground(new Color(130, 50, 100));
+        //l1.setForeground(new Color(130, 50, 100));
         l1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
         panel.add(l1, gbc);
 
@@ -138,7 +138,7 @@ public class GridBagLayout {
         }
             gbc.fill = GridBagConstraints.VERTICAL;
             gbc.gridy = 0;
-            gbc.anchor = FIRST_LINE_END;
+            gbc.anchor = LINE_END;
             gbc.weighty = 0.0;
             gbc.weightx = 1.0;
             gbc.ipady = 0;

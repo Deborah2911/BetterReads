@@ -77,15 +77,24 @@ public class DBConnection {
         }
         return List.of();
     }
-    public static List<Reviews> getReviews(){
+    public static List<Reviews> getReviews(int userId){
 
         try(Connection connection = DriverManager.getConnection(url, user, password)) {
             System.out.println("Connected to database!");
 
-            Statement statement = connection.createStatement();
+            //Statement statement = connection.createStatement();
 
-            String query = "select rating, title, author, name from \"reviews\" join \"books\" on reviews.book_id = books.id join \"users\" on reviews.user_id = users.id";
-            ResultSet resultSet = statement.executeQuery(query);
+            String query = "select rating, title, author, name from \"reviews\" join \"books\" on reviews.book_id = books.id join \"users\" on reviews.user_id = users.id " +
+                    "where reviews.user_id IN (\n" +
+                    "        SELECT user2_id FROM friendships WHERE user1_id = ?\n" +
+                    "        UNION\n" +
+                    "        SELECT user1_id FROM friendships WHERE user2_id = ?\n" +
+                    "    );";
+            PreparedStatement pst = connection.prepareStatement(query);
+            pst.setInt(1, userId);
+            pst.setInt(2, userId);
+
+            ResultSet resultSet = pst.executeQuery();
 
             List<Reviews> reviews = new ArrayList<>();
             while (resultSet.next()) {

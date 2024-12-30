@@ -1,6 +1,7 @@
 package Views;
 
 import javax.swing.*;
+import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -14,6 +15,8 @@ public class AccountView extends JPanel {
     private JButton logOutButton;
 
     private final Color backgroundColor = new Color(230, 255, 255);
+    private final Color buttonColor = new Color(235, 213, 243);
+    private final Font buttonFont = new Font(Font.SANS_SERIF, Font.PLAIN, 14);
 
     public AccountView() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -30,19 +33,20 @@ public class AccountView extends JPanel {
         passwordField.setEditable(false);
 
         togglePasswordButton = new JButton("Show");
-        togglePasswordButton.setBackground(new Color(235, 213, 243));
-        togglePasswordButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
+        togglePasswordButton.setBackground(buttonColor);
+        togglePasswordButton.setFont(buttonFont);
 
         modifyUsernameButton = new JButton("Modify Username");
-        modifyUsernameButton.setBackground(new Color(235, 213, 243));
-        modifyUsernameButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
+        modifyUsernameButton.setBackground(buttonColor);
+        modifyUsernameButton.setFont(buttonFont);
 
         modifyFullNameButton = new JButton("Modify Full Name");
-        modifyFullNameButton.setBackground(new Color(235, 213, 243));
-        modifyFullNameButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
+        modifyFullNameButton.setBackground(buttonColor);
+        modifyFullNameButton.setFont(buttonFont);
 
         logOutButton = new JButton("Log Out");
-        logOutButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+        logOutButton.setBackground(buttonColor);
+        logOutButton.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
 
         JPanel passwordPanel;
         JPanel usernamePanel;
@@ -67,8 +71,7 @@ public class AccountView extends JPanel {
         this.setBackground(backgroundColor);
         this.add(smallPanel);
         this.add(Box.createRigidArea(new Dimension(0, 3)));
-        logOutButton.setPreferredSize(new Dimension(80, 60));
-        logOutButton.setBackground(new Color(235, 113, 143));
+        logOutButton.setPreferredSize(new Dimension(90, 50));
         this.add(logOutButton);
     }
 

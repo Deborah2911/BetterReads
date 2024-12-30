@@ -32,10 +32,10 @@ public class ReleasesView extends JFrame {
         reviewsPanel.setBackground(Color.WHITE);
 
         List<Reviews> reviewsList = new ArrayList<>();
-        reviewsList = DBConnection.getReviews();
+        reviewsList = DBConnection.getReviews(account.getId());
 
         for(Reviews review: reviewsList) {
-            JLabel titleAuthor = new JLabel(review.getTitle()+"   by  "+review.getAuthor());
+            JLabel titleAuthor = new JLabel(review.getTitle()+"    by     "+review.getAuthor());
             JLabel userFullName = new JLabel(review.getUserFullName()+" reviewed ");
             JLabel rating = new JLabel(review.getRating()+"/5 stars ");
 
@@ -76,7 +76,7 @@ public class ReleasesView extends JFrame {
 
                 String bookReleaseDate2 = ft2.format(release.getReleaseDate());
 
-                JLabel titleAuthor = new JLabel(release.getTitle()+"   by   "+release.getAuthor());
+                JLabel titleAuthor = new JLabel(release.getTitle()+"    by    "+release.getAuthor());
                 JLabel releaseDate = new JLabel("Releases "+bookReleaseDate2 + " :");
 
                 ImageIcon image = new ImageIcon("D:\\Facultate\\Anul_2\\OOP\\BetterReads\\reviews_page.png");
