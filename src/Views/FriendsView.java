@@ -33,8 +33,15 @@ public class FriendsView extends JPanel {
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.setBackground(new Color(240, 240, 240)); // Optional: distinct background color
 
-        // Initialize the "Add Friend" button
+        // Initialize the "Add Friend" button with updated design
         addFriendButton = new JButton("Add Friend");
+        addFriendButton.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+        addFriendButton.setBackground(new Color(50, 50, 50)); // Matching dark background
+        addFriendButton.setForeground(Color.WHITE);          // White text
+        addFriendButton.setFocusPainted(false);              // No focus highlight
+        addFriendButton.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15)); // Padding
+
+        // Add the button to the bottom panel
         bottomPanel.add(addFriendButton);
 
         // Add the bottom panel to the BorderLayout at the bottom
@@ -51,15 +58,15 @@ public class FriendsView extends JPanel {
         JLabel friendUsername = new JLabel(username);
 
         JPanel friendPanel = createFriendPanel(friendName, friendUsername);
-        Random random = new Random ();
+        Random random = new Random();
 
         // to create lighter colors:
         // take a random integer between 0 & 128 (rather than between 0 and 255)
         // and then add 127 to make the color lighter
 
-        int red = (random.nextInt (256) + 255)/2;
-        int green = (random.nextInt (256) + 255)/2;
-        int blue = (random.nextInt (256) + 255)/2;
+        int red = (random.nextInt(256) + 255) / 2;
+        int green = (random.nextInt(256) + 255) / 2;
+        int blue = (random.nextInt(256) + 255) / 2;
 
         Color c = new Color(red, green, blue, 255);
         friendPanel.setBackground(c);

@@ -1,7 +1,7 @@
 package Views;
 
 import javax.swing.*;
-import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -14,73 +14,105 @@ public class AccountView extends JPanel {
     private JButton modifyFullNameButton;
     private JButton logOutButton;
 
-    private final Color backgroundColor = new Color(230, 255, 255);
-    private final Color buttonColor = new Color(235, 213, 243);
-    private final Font buttonFont = new Font(Font.SANS_SERIF, Font.PLAIN, 14);
-
     public AccountView() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBackground(Color.WHITE);
+        setBackground(new Color(255, 248, 238)); // Soft pastel background
 
-        fullNameLabel = new JLabel();
-        usernameLabel = new JLabel();
+        // Labels and Password Field
+        fullNameLabel = new JLabel("John Doe");
+        usernameLabel = new JLabel("johndoe");
         JLabel passwordLabel = new JLabel("Password: ");
 
         passwordField = new JPasswordField();
         passwordField.setEchoChar('•');
-        passwordField.setFont(new Font(Font.MONOSPACED, Font.BOLD, 18));
-        passwordField.setForeground(new Color(75, 37, 100));
+        passwordField.setFont(new Font(Font.MONOSPACED, Font.BOLD, 16));
+        passwordField.setForeground(new Color(93, 64, 55)); // Subtle brown color
         passwordField.setEditable(false);
 
-        togglePasswordButton = new JButton("Show");
-        togglePasswordButton.setBackground(buttonColor);
-        togglePasswordButton.setFont(buttonFont);
+        // Buttons
+        togglePasswordButton = createButton("Show", new Color(207, 250, 244), new Color(0, 121, 107));
+        modifyUsernameButton = createButton("Modify Username", new Color(207, 250, 244), new Color(0, 121, 107));
+        modifyFullNameButton = createButton("Modify Full Name", new Color(207, 250, 244), new Color(0, 121, 107));
+        logOutButton = createButton("Log Out", new Color(255, 235, 238), new Color(183, 28, 28));
 
-        modifyUsernameButton = new JButton("Modify Username");
-        modifyUsernameButton.setBackground(buttonColor);
-        modifyUsernameButton.setFont(buttonFont);
+        // Panels for organized layout
+        JPanel passwordPanel = createSubPanel("Password", passwordField, togglePasswordButton);
+        JPanel usernamePanel = createSubPanel("Username", usernameLabel, modifyUsernameButton);
+        JPanel fullNamePanel = createSubPanel("Full name", fullNameLabel, modifyFullNameButton);
 
-        modifyFullNameButton = new JButton("Modify Full Name");
-        modifyFullNameButton.setBackground(buttonColor);
-        modifyFullNameButton.setFont(buttonFont);
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+        contentPanel.setBackground(new Color(255, 248, 238));
+        contentPanel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(209, 196, 233), 1), // Light purple border
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)
+        ));
 
-        logOutButton = new JButton("Log Out");
-        logOutButton.setBackground(buttonColor);
-        logOutButton.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+        contentPanel.add(fullNamePanel);
+        contentPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        contentPanel.add(usernamePanel);
+        contentPanel.add(Box.createRigidArea(new Dimension(0, 10)));
+        contentPanel.add(passwordPanel);
 
-        JPanel passwordPanel;
-        JPanel usernamePanel;
-        JPanel fullNamePanel;
-
-        usernamePanel = GridBagLayout.createAccountPanel(usernameLabel, modifyUsernameButton, null);
-        passwordPanel = GridBagLayout.createAccountPanel(passwordLabel, togglePasswordButton, passwordField);
-        fullNamePanel = GridBagLayout.createAccountPanel(fullNameLabel, modifyFullNameButton, null);
-
-        JPanel smallPanel = new JPanel();
-        smallPanel.setLayout(new BoxLayout(smallPanel, BoxLayout.Y_AXIS));
-        smallPanel.setBackground(Color.WHITE);
-        usernamePanel.setBackground(backgroundColor);
-        smallPanel.add(usernamePanel);
-        smallPanel.add(Box.createRigidArea(new Dimension(0, 3)));
-        passwordPanel.setBackground(backgroundColor);
-        smallPanel.add(passwordPanel);
-        smallPanel.add(Box.createRigidArea(new Dimension(0, 3)));
-        fullNamePanel.setBackground(backgroundColor);
-        smallPanel.add(fullNamePanel);
-
-        this.setBackground(backgroundColor);
-        this.add(smallPanel);
-        this.add(Box.createRigidArea(new Dimension(0, 3)));
-        logOutButton.setPreferredSize(new Dimension(90, 50));
+        // Adding components to the main panel
+        this.add(contentPanel);
+        this.add(Box.createRigidArea(new Dimension(0, 15)));
         this.add(logOutButton);
     }
 
+    private JButton createButton(String text, Color bgColor, Color fgColor) {
+        JButton button = new JButton(text);
+        button.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
+        button.setBackground(bgColor);
+        button.setForeground(fgColor);
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
+        return button;
+    }
+
+    private JPanel createSubPanel(String name, JComponent field, JButton button) {
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBorder(BorderFactory.createTitledBorder(
+                BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(new Color(209, 196, 233), 1), // Light purple
+                        BorderFactory.createEmptyBorder(10, 10, 10, 10)
+                ),
+                name,
+                TitledBorder.LEFT, // Title alignment
+                TitledBorder.TOP,  // Title position
+                new Font("Arial", Font.BOLD, 14), // Title font
+                new Color(85, 85, 85) // Title color
+        ));
+        panel.setBackground(new Color(232, 234, 246)); // Very light purple
+
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        if (field != null) {
+            field.setBorder(BorderFactory.createLineBorder(new Color(209, 196, 233), 1)); // Light purple
+            field.setPreferredSize(new Dimension(200, 30));
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.gridwidth = 1;
+            panel.add(field, gbc);
+        }
+
+        if (button != null) {
+            button.setPreferredSize(new Dimension(150, 30));
+            gbc.gridx = 1;
+            gbc.gridy = 0;
+            gbc.gridwidth = 1;
+            panel.add(button, gbc);
+        }
+
+        return panel;
+    }
+
     public void setFullNameLabel(String text) {
-        fullNameLabel.setText("Full name:       " + text);
+        fullNameLabel.setText(text);
     }
 
     public void setUsernameLabel(String text) {
-        usernameLabel.setText("Username:       " + text);
+        usernameLabel.setText(text);
     }
 
     public void setPasswordField(String text) {

@@ -2,7 +2,9 @@ package Controller;
 
 import Database.DBConnection;
 import Database.User;
+import Models.LogInModel;
 import Models.SignUpModel;
+import Views.LogInView;
 import Views.MainView;
 import Views.SignUpView;
 
@@ -10,40 +12,51 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SignUpController {
-    private SignUpModel signUpModel;
-    private SignUpView signUpView;
+    private final SignUpModel model;
+    private final SignUpView view;
 
     public SignUpController(SignUpModel model, SignUpView view){
-        this.signUpModel=model;
-        this.signUpView=view;
-        signUpView.setSignUpButtonActionListener(new SignUpListener());
-        signUpView.setVisible(true);
+        this.model =model;
+        this.view =view;
+        this.view.setLogInButtonActionListener(new LogInListener());
+        this.view.setSignUpButtonActionListener(new SignUpListener());
+        this.view.setVisible(true);
+    }
+
+    private class LogInListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            LogInModel model = new LogInModel();
+            LogInView view = new LogInView();
+            LogInController logInController = new LogInController(model, view);
+            SignUpController.this.view.dispose();
+        }
     }
 
     private class SignUpListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(signUpModel.checkExistingFullName(signUpView.getFullName())) {
-                if(signUpModel.checkExistingUsername(signUpView.getUsername())){
-                    if(signUpModel.checkExistingPassword(signUpView.getPassword1()) || signUpModel.checkExistingPassword(signUpView.getPassword2())){
-                        if(signUpModel.checkSamePassword(signUpView.getPassword1(), signUpView.getPassword2())) {
-                            DBConnection.insertUser(signUpView.getUsername(), signUpView.getPassword1(), signUpView.getUsername());
-                            User account = new User(signUpView.getUsername(), signUpView.getPassword1(), signUpView.getFullName());
+            if(model.checkExistingFullName(view.getFullName())) {
+                if(model.checkExistingUsername(view.getUsername())){
+                    if(model.checkExistingPassword(view.getPassword1()) || model.checkExistingPassword(view.getPassword2())){
+                        if(model.checkSamePassword(view.getPassword1(), view.getPassword2())) {
+                            DBConnection.insertUser(view.getUsername(), view.getPassword1(), view.getUsername());
+                            User account = new User(view.getUsername(), view.getPassword1(), view.getFullName());
                             MainView mainView = new MainView();
                             MainController mainController = new MainController(account, mainView);
-                            signUpView.dispose();
+                            view.dispose();
                             //releasesView.dispose();
                         } else{
-                            signUpView.setMessagePasswordVisible();
+                            view.setMessagePasswordVisible();
                         }
                     } else {
-                        signUpView.setMessageExistingPasswordVisible();
+                        view.setMessageExistingPasswordVisible();
                     }
                 } else{
-                    signUpView.setMessageUsernameVisible();
+                    view.setMessageUsernameVisible();
                 }
             } else {
-                signUpView.setMessageFullNameVisible();
+                view.setMessageFullNameVisible();
             }
         }
     }

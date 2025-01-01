@@ -37,11 +37,11 @@ public class LogInController {
         @Override
         public void actionPerformed(ActionEvent e) {
             User account = logInModel.checkUsernamePassword(logInView.getUsername(), logInView.getPassword());
-            int userId = DBConnection.getUserIdByUsername(account.getUsername());
-            if(userId != -1){
-                account.setId(userId);
-            }
-            if(account != null){
+            if(account != null) {
+                int userId = DBConnection.getUserIdByUsername(account.getUsername());
+                if(userId != -1){
+                    account.setId(userId);
+                }
                 MainView mainView = new MainView();
                 MainController mainController = new MainController(account, mainView);
                 logInView.dispose();
