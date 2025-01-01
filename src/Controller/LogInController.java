@@ -3,10 +3,9 @@ package Controller;
 import Database.DBConnection;
 import Database.User;
 import Models.LogInModel;
-import Models.ReleasesModel;
 import Models.SignUpModel;
 import Views.LogInView;
-import Views.ReleasesView;
+import Views.MainView;
 import Views.SignUpView;
 
 import java.awt.event.ActionEvent;
@@ -43,9 +42,8 @@ public class LogInController {
                 account.setId(userId);
             }
             if(account != null){
-                ReleasesModel releasesModel = new ReleasesModel();
-                ReleasesView releasesView = new ReleasesView(account);
-                ReleasesController releasesController = new ReleasesController(releasesModel, releasesView);
+                MainView mainView = new MainView();
+                MainController mainController = new MainController(account, mainView);
                 logInView.dispose();
             }
             else{

@@ -2,25 +2,21 @@ package Controller;
 
 import Models.ReleasesModel;
 import Views.ReleasesView;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.List;
+import Database.Book;
 
 public class ReleasesController {
+    private ReleasesModel model;
+    private ReleasesView view;
 
-    private ReleasesModel releasesModel;
-    private ReleasesView releasesView;
-
-    public ReleasesController(ReleasesModel model, ReleasesView view){
-        this.releasesModel=model;
-        this.releasesView=view;
-        //releasesView.setAccountButtonActionListener(new AccountListener());
-        //releasesView.setVisible(true);
+    public ReleasesController(ReleasesModel model, ReleasesView view) {
+        this.model = model;
+        this.view = view;
+        loadReleases();
     }
 
-    public class AccountListener implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-        }
+    private void loadReleases() {
+        List<Book> releases = model.getReleases();
+        view.updateReleases(releases);
     }
 }

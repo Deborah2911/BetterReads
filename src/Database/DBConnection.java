@@ -4,10 +4,10 @@ import java.sql.*;
 import java.util.*;
 
 public class DBConnection {
-    //private static final String url = "jdbc:postgresql://localhost:5432/betterreads"; //-- Uncomment this if you are Deni, comment if you are Debo
-    private static final String url = "jdbc:postgresql://localhost:5432/postgres"; //-- Uncomment this if you are Debo, comment if you are Deni
-    //private static final String password = "password"; //-- Uncomment this if you are Deni, comment if you are Debo
-    private static final String password = "Berti2001!"; //--Uncomment this if you are Debo, comment if you are Deni
+    private static final String url = "jdbc:postgresql://localhost:5432/betterreads"; //-- Uncomment this if you are Deni, comment if you are Debo
+    //private static final String url = "jdbc:postgresql://localhost:5432/postgres"; //-- Uncomment this if you are Debo, comment if you are Deni
+    private static final String password = "password"; //-- Uncomment this if you are Deni, comment if you are Debo
+    //private static final String password = "Berti2001!"; //--Uncomment this if you are Debo, comment if you are Deni
     private static final String user = "postgres";
 
     public static int getUserIdByUsername(String username) {
@@ -51,7 +51,6 @@ public class DBConnection {
         return List.of();
     }
     public static List<Book> getBook() {
-
         try(Connection connection = DriverManager.getConnection(url, user, password)) {
             System.out.println("Connected to database!");
 
@@ -135,6 +134,33 @@ public class DBConnection {
             e.printStackTrace();
         }
         return friends;
+    }
+    public static List<Book> getBooksReleasedThisMonth() {
+        try(Connection connection = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Connected to database!");
+
+            Statement statement = connection.createStatement();
+
+            String query = "SELECT * FROM books \n" +
+                    "WHERE TO_CHAR(releaseDate, 'YYYY-MM') = TO_CHAR(CURRENT_DATE, 'YYYY-MM');\n";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            List<Book> books = new ArrayList<>();
+            while (resultSet.next()) {
+                books.add(new Book(
+                        resultSet.getInt("id"),
+                        resultSet.getString("title"),
+                        resultSet.getString("author"),
+                        resultSet.getDate("releaseDate"),
+                        resultSet.getString("genre")
+                ));
+            }
+            return books;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return List.of();
     }
     public static boolean addFriendship(int userId, String friendUsername) {
         // Fetch the friend's ID from the database based on their username
@@ -240,5 +266,4 @@ public class DBConnection {
         }
         return false;
     }
-
 }

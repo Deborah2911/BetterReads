@@ -2,9 +2,8 @@ package Controller;
 
 import Database.DBConnection;
 import Database.User;
-import Models.ReleasesModel;
 import Models.SignUpModel;
-import Views.ReleasesView;
+import Views.MainView;
 import Views.SignUpView;
 
 import java.awt.event.ActionEvent;
@@ -30,9 +29,8 @@ public class SignUpController {
                         if(signUpModel.checkSamePassword(signUpView.getPassword1(), signUpView.getPassword2())) {
                             DBConnection.insertUser(signUpView.getUsername(), signUpView.getPassword1(), signUpView.getUsername());
                             User account = new User(signUpView.getUsername(), signUpView.getPassword1(), signUpView.getFullName());
-                            ReleasesModel releasesModel = new ReleasesModel();
-                            ReleasesView releasesView = new ReleasesView(account);
-                            ReleasesController releasesController = new ReleasesController(releasesModel, releasesView);
+                            MainView mainView = new MainView();
+                            MainController mainController = new MainController(account, mainView);
                             signUpView.dispose();
                             //releasesView.dispose();
                         } else{
