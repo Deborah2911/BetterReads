@@ -7,6 +7,7 @@ public class Book {
     private String author;
     private Date releaseDate;
     private String genre;
+    private int category;
 
     public Book(int id, String title, String author, Date releaseDate, String genre) {
         this.id = id;
@@ -14,6 +15,14 @@ public class Book {
         this.author = author;
         this.releaseDate = releaseDate;
         this.genre = genre;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
+    }
+
+    public int getCategory() {
+        return category;
     }
 
     public String getTitle() {

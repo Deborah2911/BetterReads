@@ -30,6 +30,11 @@ public class MainController {
         AccountController accountController = new AccountController(account, accountView);
         view.addTab("Account", accountView);
 
+        // Initialize MyBooks
+        MyBooksView myBooksView = new MyBooksView();
+        MyBooksController myBooksController = new MyBooksController(account, myBooksView);
+        view.addTab("My Books", myBooksView);
+
         // Initialize Friends
         FriendsView friendsView = new FriendsView();
         FriendsController friendsController = new FriendsController(account, friendsView);

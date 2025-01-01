@@ -1,6 +1,7 @@
 package Database;
 
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 public class DBConnection {
@@ -161,6 +162,39 @@ public class DBConnection {
             e.printStackTrace();
         }
         return List.of();
+    }
+    public static List<Book> getCategorizedBooks(int userId) {
+        List<Book> books = new ArrayList<>();
+
+        String query = "SELECT b.id, b.title, b.author, b.releasedate, b.genre, ub.category_id " +
+                "FROM userbooks ub " +
+                "JOIN books b ON ub.book_id = b.id " +
+                "WHERE ub.user_id = ?";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, userId);  // Set user_id in the query
+            ResultSet rs = stmt.executeQuery();
+
+            // Process the result set
+            while (rs.next()) {
+                int bookId = rs.getInt("id");
+                String title = rs.getString("title");
+                String author = rs.getString("author");
+                Date releaseDate = rs.getDate("releasedate");
+                String genre = rs.getString("genre");
+                int categoryId = rs.getInt("category_id");
+
+                Book book = new Book(bookId, title, author, releaseDate, genre);
+                book.setCategory(categoryId);
+                books.add(book);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return books;
     }
     public static boolean addFriendship(int userId, String friendUsername) {
         // Fetch the friend's ID from the database based on their username
