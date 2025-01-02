@@ -1,6 +1,7 @@
 import Controllers.*;
 import Models.LogInModel;
 import Views.LogInView;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class Main {
     public static void main(String[] args) {

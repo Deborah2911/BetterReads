@@ -217,7 +217,7 @@ public class DBConnection {
         }
     }
     public static void insertUser(String username, String passwordUser, String name) {
-
+        String hashedPassword = PasswordHashing.hashPassword(passwordUser);
         String query = "INSERT INTO users (username, password, name) VALUES (?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
@@ -226,7 +226,7 @@ public class DBConnection {
             PreparedStatement pst = connection.prepareStatement(query);
 
             pst.setString(1, username);
-            pst.setString(2, passwordUser);
+            pst.setString(2, hashedPassword);
             pst.setString(3, name);
 
             pst.executeUpdate();
