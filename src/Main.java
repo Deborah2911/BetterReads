@@ -1,4 +1,4 @@
-import Controller.*;
+import Controllers.*;
 import Models.LogInModel;
 import Views.LogInView;
 

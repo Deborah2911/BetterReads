@@ -1,4 +1,4 @@
-package Controller;
+package Controllers;
 
 import Models.ReleasesModel;
 import Views.ReleasesView;

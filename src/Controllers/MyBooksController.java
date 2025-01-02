@@ -1,11 +1,9 @@
-package Controller;
+package Controllers;
 
 import Database.User;
 import Models.MyBooksModel;
 import Views.MyBooksView;
 
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

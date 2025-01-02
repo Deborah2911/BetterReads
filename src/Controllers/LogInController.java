@@ -1,4 +1,4 @@
-package Controller;
+package Controllers;
 
 import Database.DBConnection;
 import Database.User;
