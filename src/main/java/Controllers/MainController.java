@@ -42,7 +42,7 @@ public class MainController {
 
         // Initialize Search
         SearchView searchView = new SearchView();
-        SearchModel searchModel = new SearchModel();
+        SearchModel searchModel = new SearchModel(account);
         SearchController searchController = new SearchController(searchModel, searchView);
         view.addTab("Search", searchView);
     }

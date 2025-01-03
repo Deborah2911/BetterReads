@@ -1,6 +1,7 @@
 package Controllers;
 
 import Database.Book;
+import Database.Category;
 import Models.SearchModel;
 import Views.SearchView;
 
@@ -16,7 +17,7 @@ public class SearchController {
     public SearchController(SearchModel model, SearchView view) {
         this.model = model;
         this.view = view;
-
+        this.view.displayResults(this.model.getBooksList(), this.model.getCategoriesList());
         view.setSearchActionListener(new SearchActionListener());
     }
 
@@ -25,6 +26,7 @@ public class SearchController {
         @Override
         public void actionPerformed(ActionEvent e) {
             List<Book> totalBooks = model.getBooksList();
+            List<Category> categories = model.getCategoriesList();
             List<Book> foundBooks = new ArrayList<>();
             String searchQuery = view.getSearchQuery();
 
@@ -33,7 +35,7 @@ public class SearchController {
                     foundBooks.add(book);
                 }
             }
-            view.displayResults(foundBooks);
+            view.displayResults(foundBooks, categories);
         }
     }
 }

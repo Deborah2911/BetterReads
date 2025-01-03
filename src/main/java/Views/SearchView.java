@@ -1,15 +1,16 @@
 package Views;
 
 import Database.Book;
+import Database.Category;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import static java.awt.GridBagConstraints.CENTER;
-import static java.awt.GridBagConstraints.FIRST_LINE_START;
+import static java.awt.GridBagConstraints.*;
 
 public class SearchView extends JPanel {
     private final JTextField searchField;
@@ -63,7 +64,7 @@ public class SearchView extends JPanel {
         searchButton.addActionListener(actionListener);
     }
 
-    public void displayResults(List<Book> books) {
+    public void displayResults(List<Book> books, List<Category> categories) {
         resultsPanel.removeAll();
 
         if (books.isEmpty()) {
@@ -73,7 +74,7 @@ public class SearchView extends JPanel {
             resultsPanel.add(noResultsLabel);
         } else {
             for (Book book : books) {
-                JPanel bookPanel = createBookPanel(book);
+                JPanel bookPanel = createBookPanel(book, categories);
                 resultsPanel.add(bookPanel);
                 resultsPanel.add(Box.createRigidArea(new Dimension(0, 5)));
             }
@@ -83,9 +84,19 @@ public class SearchView extends JPanel {
         resultsPanel.repaint();
     }
 
-    private JPanel createBookPanel(Book book) {
+    private JPanel createBookPanel(Book book, List<Category> categories) {
         JLabel titleLabel = new JLabel("Title:      " + book.getTitle());
         JLabel authorLabel = new JLabel("Author:    " + book.getAuthor());
+        JComboBox<String> categoriesDropdown = new JComboBox<>();
+        categoriesDropdown.addItem("Not on your bookshelf");
+        for(Category category: categories){
+            categoriesDropdown.addItem(category.getCategory());
+        }
+
+        categoriesDropdown.setPreferredSize(new Dimension(170, 40));
+        categoriesDropdown.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
+        categoriesDropdown.setBackground(new Color(245, 218, 223));
+        categoriesDropdown.setBorder(new LineBorder(Color.WHITE));
 
         GridBagConstraints gbc = new GridBagConstraints();
         JPanel panel = new JPanel(new GridBagLayout());
@@ -109,6 +120,15 @@ public class SearchView extends JPanel {
         gbc.weightx = 1.0;
         gbc.gridwidth = 2;
         panel.add(authorLabel,gbc);
+
+        gbc.fill = VERTICAL;
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.anchor = FIRST_LINE_END;
+        gbc.weighty = 0.0;
+        gbc.weightx = 1.0;
+        //gbc.gridwidth = 2;
+        panel.add(categoriesDropdown, gbc);
 
         return panel;
     }

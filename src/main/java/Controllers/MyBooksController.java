@@ -35,7 +35,7 @@ public class MyBooksController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            view.setForegroundCRButton(Color.BLACK);
+            view.setForegroundCRButton(Color.DARK_GRAY);
             view.setForegroundWTRButton(Color.WHITE);
             view.setForegroundReadButton(Color.WHITE);
             view.getCardLayout().show(view.getCardPanel(), "Currently Reading");
@@ -47,7 +47,7 @@ public class MyBooksController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            view.setForegroundReadButton(Color.BLACK);
+            view.setForegroundReadButton(Color.DARK_GRAY);
             view.setForegroundWTRButton(Color.WHITE);
             view.setForegroundCRButton(Color.WHITE);
             view.getCardLayout().show(view.getCardPanel(), "Read");
@@ -58,7 +58,7 @@ public class MyBooksController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            view.setForegroundWTRButton(Color.BLACK);
+            view.setForegroundWTRButton(Color.DARK_GRAY);
             view.setForegroundCRButton(Color.WHITE);
             view.setForegroundReadButton(Color.WHITE);
             view.getCardLayout().show(view.getCardPanel(), "Want to Read");
