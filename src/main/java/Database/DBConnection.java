@@ -5,10 +5,10 @@ import java.sql.Date;
 import java.util.*;
 
 public class DBConnection {
-    private static final String url = "jdbc:postgresql://localhost:5432/betterreads"; //-- Uncomment this if you are Deni, comment if you are Debo
-    //private static final String url = "jdbc:postgresql://localhost:5432/postgres"; //-- Uncomment this if you are Debo, comment if you are Deni
-    private static final String password = "password"; //-- Uncomment this if you are Deni, comment if you are Debo
-    //private static final String password = "Berti2001!"; //--Uncomment this if you are Debo, comment if you are Deni
+    //private static final String url = "jdbc:postgresql://localhost:5432/betterreads"; //-- Uncomment this if you are Deni, comment if you are Debo
+    private static final String url = "jdbc:postgresql://localhost:5432/postgres"; //-- Uncomment this if you are Debo, comment if you are Deni
+    //private static final String password = "password"; //-- Uncomment this if you are Deni, comment if you are Debo
+    private static final String password = "Berti2001!"; //--Uncomment this if you are Debo, comment if you are Deni
     private static final String user = "postgres";
 
     public static int getUserIdByUsername(String username) {
