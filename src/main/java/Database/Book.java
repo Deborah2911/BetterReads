@@ -29,6 +29,8 @@ public class Book {
         return title;
     }
 
+    public int getId() { return id; }
+
     public String getAuthor() {
         return author;
     }

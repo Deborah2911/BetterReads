@@ -19,6 +19,10 @@ public class MyBooksView extends JPanel {
     private final JButton readButton;
     private final JButton wantToReadButton;
 
+    private final JScrollPane currentlyReadingScrollPane;
+    private final JScrollPane readScrollPane;
+    private final JScrollPane wantToReadScrollPane;
+
     public MyBooksView() {
         setLayout(new BorderLayout());
         setBackground(new Color(245, 245, 245)); // Light background for the entire view
@@ -46,12 +50,25 @@ public class MyBooksView extends JPanel {
         readPanel = createStyledPanel();
         wantToReadPanel = createStyledPanel();
 
-        cardPanel.add(currentlyReadingPanel, "Currently Reading");
-        cardPanel.add(readPanel, "Read");
-        cardPanel.add(wantToReadPanel, "Want to Read");
+        currentlyReadingScrollPane = createScrollPane(currentlyReadingPanel);
+        readScrollPane = createScrollPane(readPanel);
+        wantToReadScrollPane = createScrollPane(wantToReadPanel);
+
+        cardPanel.add(currentlyReadingScrollPane, "Currently Reading");
+        cardPanel.add(readScrollPane, "Read");
+        cardPanel.add(wantToReadScrollPane, "Want to Read");
 
         add(buttonPanel, BorderLayout.NORTH); // Add buttons panel to the top
         add(cardPanel, BorderLayout.CENTER);  // Add card panel in the center
+    }
+
+    private JScrollPane createScrollPane(JPanel panel) {
+        JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16); // Smooth scrolling
+        scrollPane.setBorder(BorderFactory.createEmptyBorder()); // Optional: No border around scroll pane
+        return scrollPane;
     }
 
     public void setForegroundCRButton(Color color){
@@ -91,7 +108,8 @@ public class MyBooksView extends JPanel {
     }
 
     private JPanel createStyledPanel() {
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(new Color(255, 245, 230)); // Soft pastel background
         return panel;
     }
@@ -126,6 +144,7 @@ public class MyBooksView extends JPanel {
             bookPanel.setBackground(new Color(255, 227, 198)); // Soft pastel for book panels
 
             panel.add(bookPanel);
+            panel.add(Box.createVerticalStrut(10)); // Add space between books
         }
 
         panel.revalidate();

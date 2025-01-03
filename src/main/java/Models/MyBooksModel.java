@@ -20,6 +20,11 @@ public class MyBooksModel {
 
     // Method to fetch and categorize books
     public void loadCategorizedBooks() {
+
+        currentlyReadingBooks.clear();
+        readBooks.clear();
+        wantToReadBooks.clear();
+
         // Fetch categorized books from DB
         List<Book> books = DBConnection.getCategorizedBooks(user.getId());
 
@@ -30,10 +35,10 @@ public class MyBooksModel {
                     currentlyReadingBooks.add(book);
                     break;
                 case 2:
-                    readBooks.add(book);
+                    wantToReadBooks.add(book);
                     break;
                 case 3:
-                    wantToReadBooks.add(book);
+                    readBooks.add(book);
                     break;
             }
         }

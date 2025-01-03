@@ -28,7 +28,7 @@ public class DBConnection {
     public static List<User> getUser() {
 
         try(Connection connection = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Connected to database!");
+            //System.out.println("Connected to database!");
 
             Statement statement = connection.createStatement();
 
@@ -53,7 +53,7 @@ public class DBConnection {
     }
     public static List<Book> getBook() {
         try(Connection connection = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Connected to database!");
+            //System.out.println("Connected to database!");
 
             Statement statement = connection.createStatement();
 
@@ -80,7 +80,7 @@ public class DBConnection {
     public static List<Reviews> getReviews(int userId){
 
         try(Connection connection = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Connected to database!");
+            //System.out.println("Connected to database!");
 
             //Statement statement = connection.createStatement();
 
@@ -138,12 +138,13 @@ public class DBConnection {
     }
     public static List<Book> getBooksReleasedThisMonth() {
         try(Connection connection = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Connected to database!");
+            //System.out.println("Connected to database!");
 
             Statement statement = connection.createStatement();
 
             String query = "SELECT * FROM books \n" +
-                    "WHERE TO_CHAR(releaseDate, 'YYYY-MM') = TO_CHAR(CURRENT_DATE, 'YYYY-MM');\n";
+                    "WHERE TO_CHAR(releaseDate, 'YYYY-MM') = TO_CHAR(CURRENT_DATE, 'YYYY-MM') \n" +
+                    "ORDER BY releaseDate";
             ResultSet resultSet = statement.executeQuery(query);
 
             List<Book> books = new ArrayList<>();
@@ -242,7 +243,7 @@ public class DBConnection {
         String query = "UPDATE users SET name = ? WHERE name = ?";
 
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Connected to database!");
+            //System.out.println("Connected to database!");
 
             // Use PreparedStatement to prevent SQL injection
             PreparedStatement pst = connection.prepareStatement(query);
@@ -274,7 +275,7 @@ public class DBConnection {
         String query = "UPDATE users SET username = ? WHERE username = ?";
 
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Connected to database!");
+            //System.out.println("Connected to database!");
 
             // Use PreparedStatement to prevent SQL injection
             PreparedStatement pst = connection.prepareStatement(query);
@@ -303,7 +304,7 @@ public class DBConnection {
 
     public static List<Category> getCategory() {
         try(Connection connection = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Connected to database!");
+            //System.out.println("Connected to database!");
 
             Statement statement = connection.createStatement();
 
@@ -323,5 +324,116 @@ public class DBConnection {
             e.printStackTrace();
         }
         return List.of();
+    }
+
+    public static int getUserbookCategoryByIds(int bookid, int userid) {
+        String query = "SELECT category_id FROM \"userbooks\" where book_id=? and user_id=?";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password);
+             PreparedStatement pst = connection.prepareStatement(query)) {
+
+            pst.setInt(1, bookid);
+            pst.setInt(2, userid);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("category_id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public static void updateUserbooks(int categoryid, int userid, int bookid){
+
+        String query = "UPDATE \"userbooks\" SET category_id = ? WHERE user_id = ? and book_id=?";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            //System.out.println("Connected to database!");
+
+            PreparedStatement pst = connection.prepareStatement(query);
+
+            pst.setInt(1, categoryid);
+            pst.setInt(2, userid);
+            pst.setInt(3, bookid);
+
+            int rowsAffected = pst.executeUpdate();
+
+            if (rowsAffected > 0) {
+                //System.out.println("Name updated successfully!");
+            } else {
+                //System.out.println("No user found with the provided name.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void insertUserbook(int id, int categoryid, int userid, int bookid){
+
+        String query = "INSERT INTO userbooks (id, category_id, user_id, book_id) VALUES (?,?,?,?)";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            //System.out.println("Connected to database!");
+
+            PreparedStatement pst = connection.prepareStatement(query);
+
+            pst.setInt(1, id);
+            pst.setInt(2, categoryid);
+            pst.setInt(3, userid);
+            pst.setInt(4, bookid);
+
+            int rowsAffected = pst.executeUpdate();
+
+            if (rowsAffected > 0) {
+                //System.out.println("Name updated successfully!");
+            } else {
+                //System.out.println("No user found with the provided name.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteUserbook(int userid, int bookid){
+
+        String query = "DELETE FROM userbooks WHERE user_id=? and book_id=?";
+
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Connected to database!");
+
+            PreparedStatement pst = connection.prepareStatement(query);
+
+            pst.setInt(1, userid);
+            pst.setInt(2, bookid);
+
+            int rowsAffected = pst.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Name updated successfully!");
+            } else {
+                System.out.println("No user found with the provided name.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static int getUserbooksMaxId(){
+        try(Connection connection = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Connected to database!");
+
+            Statement statement = connection.createStatement();
+
+            String query = "SELECT MAX(id) AS max_id FROM userbooks";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (resultSet.next())
+                return resultSet.getInt("max_id");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 400;
     }
 }
