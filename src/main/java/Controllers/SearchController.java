@@ -17,8 +17,8 @@ public class SearchController {
     public SearchController(SearchModel model, SearchView view) {
         this.model = model;
         this.view = view;
-        this.view.displayResults(this.model.getBooksList(), this.model.getCategoriesList());
-        view.setSearchActionListener(new SearchActionListener());
+        this.view.displayResults(this.model.getBooksList(), this.model.getUser(), this.model.getCategoriesList());
+        this.view.setSearchActionListener(new SearchActionListener());
     }
 
     private class SearchActionListener implements ActionListener {
@@ -26,16 +26,20 @@ public class SearchController {
         @Override
         public void actionPerformed(ActionEvent e) {
             List<Book> totalBooks = model.getBooksList();
-            List<Category> categories = model.getCategoriesList();
             List<Book> foundBooks = new ArrayList<>();
             String searchQuery = view.getSearchQuery();
 
-            for (Book book : totalBooks) {
-                if(book.getTitle().toLowerCase().contains(searchQuery.toLowerCase())) {
-                    foundBooks.add(book);
+            if(searchQuery.isBlank()){
+                view.displayResults(totalBooks, model.getUser(), model.getCategoriesList());
+            } else {
+
+                for (Book book : totalBooks) {
+                    if (book.getTitle().toLowerCase().contains(searchQuery.toLowerCase())) {
+                        foundBooks.add(book);
+                    }
                 }
+                view.displayResults(foundBooks, model.getUser(), model.getCategoriesList());
             }
-            view.displayResults(foundBooks, categories);
         }
     }
 }

@@ -7,14 +7,17 @@ import Database.User;
 
 import java.util.List;
 
-public class SearchModel extends MyBooksModel{
+public class SearchModel{
+
+    private final User user;
 
     public SearchModel(User user) {
-        super(user);
+        this.user=user;
     }
 
     public List<Book> getBooksList() {
         return DBConnection.getBook();
     }
     public List<Category> getCategoriesList(){return DBConnection.getCategory();}
+    public User getUser(){ return this.user;}
 }
