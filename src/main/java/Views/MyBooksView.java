@@ -29,7 +29,7 @@ public class MyBooksView extends JPanel {
         buttonPanel.setBackground(new Color(255, 227, 198)); // Soft pastel background
 
         currentlyReadingButton = createStyledButton("Currently Reading", new Color(198, 235, 255));
-        currentlyReadingButton.setForeground(Color.BLACK);
+        currentlyReadingButton.setForeground(Color.DARK_GRAY);
         readButton = createStyledButton("Read", new Color(220, 198, 255));
         wantToReadButton = createStyledButton("Want to Read", new Color(255, 198, 220));
 

@@ -57,7 +57,7 @@ public class DBConnection {
 
             Statement statement = connection.createStatement();
 
-            String query = "SELECT * FROM \"books\"";
+            String query = "SELECT * FROM \"books\" ORDER BY title";
             ResultSet resultSet = statement.executeQuery(query);
 
             List<Book> books = new ArrayList<>();
@@ -299,5 +299,29 @@ public class DBConnection {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public static List<Category> getCategory() {
+        try(Connection connection = DriverManager.getConnection(url, user, password)) {
+            System.out.println("Connected to database!");
+
+            Statement statement = connection.createStatement();
+
+            String query = "SELECT * FROM \"categories\"";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            List<Category> categories = new ArrayList<>();
+            while (resultSet.next()) {
+                categories.add(new Category(
+                        resultSet.getInt("id"),
+                        resultSet.getString("category")
+                ));
+            }
+            return categories;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return List.of();
     }
 }
