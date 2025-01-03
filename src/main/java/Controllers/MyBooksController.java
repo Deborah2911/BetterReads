@@ -4,6 +4,7 @@ import Database.User;
 import Models.MyBooksModel;
 import Views.MyBooksView;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,6 +35,9 @@ public class MyBooksController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            view.setForegroundCRButton(Color.BLACK);
+            view.setForegroundWTRButton(Color.WHITE);
+            view.setForegroundReadButton(Color.WHITE);
             view.getCardLayout().show(view.getCardPanel(), "Currently Reading");
         }
     }
@@ -42,6 +46,10 @@ public class MyBooksController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            view.setForegroundReadButton(Color.BLACK);
+            view.setForegroundWTRButton(Color.WHITE);
+            view.setForegroundCRButton(Color.WHITE);
             view.getCardLayout().show(view.getCardPanel(), "Read");
         }
     }
@@ -50,6 +58,9 @@ public class MyBooksController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            view.setForegroundWTRButton(Color.BLACK);
+            view.setForegroundCRButton(Color.WHITE);
+            view.setForegroundReadButton(Color.WHITE);
             view.getCardLayout().show(view.getCardPanel(), "Want to Read");
         }
     }

@@ -1,6 +1,7 @@
 package Views;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -28,6 +29,7 @@ public class MyBooksView extends JPanel {
         buttonPanel.setBackground(new Color(255, 227, 198)); // Soft pastel background
 
         currentlyReadingButton = createStyledButton("Currently Reading", new Color(198, 235, 255));
+        currentlyReadingButton.setForeground(Color.BLACK);
         readButton = createStyledButton("Read", new Color(220, 198, 255));
         wantToReadButton = createStyledButton("Want to Read", new Color(255, 198, 220));
 
@@ -50,6 +52,18 @@ public class MyBooksView extends JPanel {
 
         add(buttonPanel, BorderLayout.NORTH); // Add buttons panel to the top
         add(cardPanel, BorderLayout.CENTER);  // Add card panel in the center
+    }
+
+    public void setForegroundCRButton(Color color){
+        currentlyReadingButton.setForeground(color);
+    }
+
+    public void setForegroundReadButton(Color color){
+        readButton.setForeground(color);
+    }
+
+    public void setForegroundWTRButton(Color color){
+        wantToReadButton.setForeground(color);
     }
 
     private JButton createStyledButton(String text, Color bgColor) {

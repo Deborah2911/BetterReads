@@ -9,9 +9,9 @@ import java.sql.ResultSet;
 
 public class PasswordHasher {
     public static void main(String[] args) {
-        String url = "jdbc:postgresql://localhost:5432/your_database";
-        String user = "your_username";
-        String password = "your_password";
+        String url = "jdbc:postgresql://localhost:5432/postgres";
+        String user = "postgres";
+        String password = "Berti2001!";
 
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
             System.out.println("Connected to the database!");
