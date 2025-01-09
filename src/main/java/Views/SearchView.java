@@ -105,6 +105,7 @@ public class SearchView extends JPanel {
         categoriesDropdown.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int currentBookCategory = DBConnection.getUserbookCategoryByIds(book.getId(), user.getId());
                 int categoryIndex= categoriesDropdown.getSelectedIndex();
                 if(currentBookCategory != categoryIndex){
                     if(categoryIndex>0){
