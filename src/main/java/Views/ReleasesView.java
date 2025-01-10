@@ -26,8 +26,8 @@ public class ReleasesView extends JPanel {
             JLabel titleAuthor = new JLabel(release.getTitle() + "    by    " + release.getAuthor());
             JLabel releaseDate = new JLabel("Releases " + bookReleaseDate + " :");
 
-            ImageIcon image = new ImageIcon("C:\\Users\\Denisa\\Downloads\\No_Cover.jpg");
-            Image scaledImage = image.getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
+            ImageIcon format = new ImageIcon(release.getImgBytes());
+            Image scaledImage = format.getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
             JLabel labelImage = new JLabel(new ImageIcon(scaledImage));
 
             JPanel smallPanel = createReleasesPanel(releaseDate, labelImage, titleAuthor);

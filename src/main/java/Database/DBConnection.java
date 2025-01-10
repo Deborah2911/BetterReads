@@ -67,7 +67,8 @@ public class DBConnection {
                         resultSet.getString("title"),
                         resultSet.getString("author"),
                         resultSet.getDate("releaseDate"),
-                        resultSet.getString("genre")
+                        resultSet.getString("genre"),
+                        resultSet.getBytes("cover")
                 ));
             }
             return books;
@@ -84,7 +85,7 @@ public class DBConnection {
 
             //Statement statement = connection.createStatement();
 
-            String query = "select rating, title, author, name from \"reviews\" join \"books\" on reviews.book_id = books.id join \"users\" on reviews.user_id = users.id " +
+            String query = "select rating, title, author, name, cover from \"reviews\" join \"books\" on reviews.book_id = books.id join \"users\" on reviews.user_id = users.id " +
                     "where reviews.user_id IN (\n" +
                     "        SELECT user2_id FROM friendships WHERE user1_id = ?\n" +
                     "        UNION\n" +
@@ -102,7 +103,8 @@ public class DBConnection {
                         resultSet.getDouble("rating"),
                         resultSet.getString("title"),
                         resultSet.getString("author"),
-                        resultSet.getString("name")
+                        resultSet.getString("name"),
+                        resultSet.getBytes("cover")
                 ));
             }
             return reviews;
@@ -154,7 +156,8 @@ public class DBConnection {
                         resultSet.getString("title"),
                         resultSet.getString("author"),
                         resultSet.getDate("releaseDate"),
-                        resultSet.getString("genre")
+                        resultSet.getString("genre"),
+                        resultSet.getBytes("cover")
                 ));
             }
             return books;
@@ -187,7 +190,7 @@ public class DBConnection {
                 String genre = rs.getString("genre");
                 int categoryId = rs.getInt("category_id");
 
-                Book book = new Book(bookId, title, author, releaseDate, genre);
+                Book book = new Book(bookId, title, author, releaseDate, genre, null);
                 book.setCategory(categoryId);
                 books.add(book);
             }

@@ -8,13 +8,26 @@ public class Book {
     private Date releaseDate;
     private String genre;
     private int category;
+    private byte[] imgBytes;
 
-    public Book(int id, String title, String author, Date releaseDate, String genre) {
+    public Book(int id, String title, String author, Date releaseDate, String genre, byte[] imgBytes) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.releaseDate = releaseDate;
         this.genre = genre;
+        if(imgBytes!=null)
+            this.imgBytes = imgBytes;
+        else
+            this.imgBytes = "D:\\Facultate\\Anul_2\\DB\\MiniBetterReads\\reviews_page.png".getBytes();
+    }
+
+    public byte[] getImgBytes() {
+        return imgBytes;
+    }
+
+    public void setImgBytes(byte[] imgBytes) {
+        this.imgBytes = imgBytes;
     }
 
     public void setCategory(int category) {

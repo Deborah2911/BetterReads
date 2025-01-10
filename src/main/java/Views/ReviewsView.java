@@ -22,8 +22,8 @@ public class ReviewsView extends JPanel {
             JLabel userFullName = new JLabel(review.getUserFullName() + " reviewed ");
             JLabel rating = new JLabel(review.getRating() + "/5 stars ");
 
-            ImageIcon image = new ImageIcon("C:\\Users\\Denisa\\Downloads\\No_Cover.jpg");
-            Image scaledImage = image.getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
+            ImageIcon format = new ImageIcon(review.getImgBytes());
+            Image scaledImage = format.getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
             JLabel labelImage = new JLabel(new ImageIcon(scaledImage));
 
             JPanel smallPanel = createPanelReviews(userFullName, labelImage, titleAuthor, rating);
