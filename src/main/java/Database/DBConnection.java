@@ -170,7 +170,7 @@ public class DBConnection {
     public static List<Book> getCategorizedBooks(int userId) {
         List<Book> books = new ArrayList<>();
 
-        String query = "SELECT b.id, b.title, b.author, b.releasedate, b.genre, ub.category_id " +
+        String query = "SELECT b.id, b.title, b.author, b.releasedate, b.genre, b.cover, ub.category_id " +
                 "FROM userbooks ub " +
                 "JOIN books b ON ub.book_id = b.id " +
                 "WHERE ub.user_id = ?";
@@ -189,8 +189,9 @@ public class DBConnection {
                 Date releaseDate = rs.getDate("releasedate");
                 String genre = rs.getString("genre");
                 int categoryId = rs.getInt("category_id");
+                byte[] imgBytes = rs.getBytes("cover");
 
-                Book book = new Book(bookId, title, author, releaseDate, genre, null);
+                Book book = new Book(bookId, title, author, releaseDate, genre, imgBytes);
                 book.setCategory(categoryId);
                 books.add(book);
             }
