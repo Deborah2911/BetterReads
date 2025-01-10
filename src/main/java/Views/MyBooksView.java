@@ -131,16 +131,16 @@ public class MyBooksView extends JPanel {
         panel.removeAll();
 
         for (Book book : books) {
-            ImageIcon image = new ImageIcon("C:\\Users\\Denisa\\Downloads\\No_Cover.jpg");
-            Image scaledImage = image.getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
-            JLabel bookCover = new JLabel(new ImageIcon(scaledImage));
+            ImageIcon format = new ImageIcon(book.getImgBytes());
+            Image scaledImage = format.getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
+            JLabel labelImage = new JLabel(new ImageIcon(scaledImage));
             JLabel title = new JLabel(book.getTitle());
             JLabel author = new JLabel("by " + book.getAuthor());
 
             title.setFont(new Font("Arial", Font.BOLD, 14));
             author.setFont(new Font("Arial", Font.PLAIN, 12));
 
-            JPanel bookPanel = createBookPanel(bookCover, title, author);
+            JPanel bookPanel = createBookPanel(labelImage, title, author);
             bookPanel.setBackground(new Color(255, 227, 198)); // Soft pastel for book panels
 
             panel.add(bookPanel);
@@ -156,6 +156,7 @@ public class MyBooksView extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
 
         // Book Cover
+        gbc.fill = GridBagConstraints.VERTICAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
