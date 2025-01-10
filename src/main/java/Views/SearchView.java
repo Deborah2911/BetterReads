@@ -88,6 +88,10 @@ public class SearchView extends JPanel {
         JLabel authorLabel = new JLabel("Author:    " + book.getAuthor());
         JComboBox<String> categoriesDropdown = new JComboBox<>();
 
+        ImageIcon format = new ImageIcon(book.getImgBytes());
+        Image scaledImage = format.getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
+        JLabel labelImage = new JLabel(new ImageIcon(scaledImage));
+
         categoriesDropdown.setPreferredSize(new Dimension(170, 40));
         categoriesDropdown.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
         categoriesDropdown.setBackground(new Color(245, 218, 223));
@@ -129,31 +133,44 @@ public class SearchView extends JPanel {
         panel.setBackground(new Color(240, 240, 255));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = FIRST_LINE_START;
+        gbc.weighty = 1.0;
+        gbc.weightx = 1.0;
+        gbc.ipady = 0;
+        gbc.ipadx = 10;
+        gbc.gridheight = 2;
+        panel.add(labelImage, gbc);
+
         gbc.fill = GridBagConstraints.HORIZONTAL;
+
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.anchor = CENTER;
+        gbc.insets = new Insets(0, 0, 30, 0);
         gbc.weighty = 0.0;
         gbc.weightx = 1.0;
-        gbc.gridwidth = 2;
+        gbc.ipady = 60;
         panel.add(titleLabel, gbc);
 
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 1;
         gbc.gridy = 1;
+        gbc.insets = new Insets(30, 0, 0, 0);
         gbc.anchor = CENTER;
         gbc.weighty = 0.0;
         gbc.weightx = 1.0;
-        gbc.gridwidth = 2;
         panel.add(authorLabel,gbc);
 
-        gbc.fill = VERTICAL;
         gbc.gridx = 2;
-        gbc.gridy = 0;
-        gbc.anchor = FIRST_LINE_END;
-        gbc.weighty = 0.0;
-        gbc.weightx = 1.0;
-        //gbc.gridwidth = 2;
+        gbc.gridy = 1;
+        gbc.anchor = LINE_END;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.ipady = 0;
         panel.add(categoriesDropdown, gbc);
 
         return panel;
