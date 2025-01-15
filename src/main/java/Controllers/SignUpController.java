@@ -40,8 +40,12 @@ public class SignUpController {
                 if(model.checkExistingUsername(view.getUsername())){
                     if(model.checkExistingPassword(view.getPassword1()) || model.checkExistingPassword(view.getPassword2())){
                         if(model.checkSamePassword(view.getPassword1(), view.getPassword2())) {
-                            DBConnection.insertUser(view.getUsername(), view.getPassword1(), view.getUsername());
+                            DBConnection.insertUser(view.getUsername(), view.getPassword1(), view.getFullName());
                             User account = new User(view.getUsername(), view.getPassword1(), view.getFullName());
+                            int userId = DBConnection.getUserIdByUsername(account.getUsername());
+                            if(userId != -1){
+                                account.setId(userId);
+                            }
                             MainView mainView = new MainView();
                             MainController mainController = new MainController(account, mainView);
                             view.dispose();

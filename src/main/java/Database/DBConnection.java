@@ -378,7 +378,6 @@ public class DBConnection {
         String query = "INSERT INTO userbooks (id, category_id, user_id, book_id) VALUES (?,?,?,?)";
 
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            //System.out.println("Connected to database!");
 
             PreparedStatement pst = connection.prepareStatement(query);
 
